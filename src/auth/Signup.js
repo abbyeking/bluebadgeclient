@@ -2,19 +2,19 @@ import React, { useState} from 'react';
 import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
 
 const Signup = (props) => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [noUsername, setNoUsername] = useState(false);
+  const [noEmail, setNoEmail] = useState(false);
 
 let handleSubmit = (event) => {
   event.preventDefault();
-  if(username){
-    setNoUsername(false);
-    console.log(username, password);
-    fetch('http://localhost:3000/user/register',
+  if(email){
+    setNoEmail(false);
+    console.log(email, password);
+    fetch('http://localhost:3000/user/signup',
       {
         method: 'POST',
-        body: JSON.stringify({username:username, passwordhash:password}),
+        body: JSON.stringify({user: {email: email, password: password}}),
         headers: new Headers({'Content-Type': 'application/json'})
       }
     )
@@ -25,11 +25,14 @@ let handleSubmit = (event) => {
       })
     .then(
       (data) => {
+        console.log(data);
         props.updateToken(data.sessionToken)
+        // localStorage.setItem('token', newToken);
+        
       }
     )
   }else{
-    setNoUsername(true);
+    setNoEmail(true);
   } 
 }
 
@@ -38,9 +41,9 @@ let handleSubmit = (event) => {
       <h1>Signup</h1>
       <Form onSubmit={handleSubmit}>
         <FormGroup>
-          <Label htmlFor='username'>Username</Label>
-          <Input onChange={(e)=>setUsername(e.target.value)}name='username' value={username}/>
-          <p> {(noUsername) ? "user name is required" : ""}</p>
+          <Label htmlFor='email'>Email</Label>
+          <Input onChange={(e)=>setEmail(e.target.value)}email='email' value={email}/>
+          <p> {(noEmail) ? "Email is required" : ""}</p>
         </FormGroup>
         <FormGroup>
           <Label htmlFor='password'>Password</Label>
