@@ -37,7 +37,7 @@ function App() {
 
   return (
     <div className="App">
-      <Auth />
+      <Auth clickSignup={updateToken}/>
       {/* <Sitebar clearToken={clearToken}/> */}
       {/* {protectedViews()} */}
     </div>
