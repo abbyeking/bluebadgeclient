@@ -26,7 +26,6 @@ const Login = (props) => {
       .then(
         (data) => {
           console.log(data.sessionToken)
-          
           props.updateToken(data.sessionToken);
         }
       )
