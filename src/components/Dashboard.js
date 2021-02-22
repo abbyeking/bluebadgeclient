@@ -1,6 +1,12 @@
 import React from 'react';
+import ReactDOM from "react-dom";
+import Modal from "react-bootstrap/Modal";
+import ModalBody from "react-bootstrap/ModalBody";
+import ModalHeader from "react-bootstrap/ModalHeader";
+import ModalFooter from "react-bootstrap/ModalFooter";
+import ModalTitle from "react-bootstrap/ModalTitle";
 
-function MyVerticallyCenteredModal(props) {
+const MyVerticallyCenteredModal = (props) => {
     return (
       <Modal
         {...props}
@@ -26,7 +32,7 @@ function MyVerticallyCenteredModal(props) {
     );
   }
   
-  function App() {
+const App = () => {
     const [modalShow, setModalShow] = React.useState(false);
   
     return (
@@ -44,3 +50,5 @@ function MyVerticallyCenteredModal(props) {
   }
   
 render(<App />);
+
+

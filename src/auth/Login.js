@@ -2,6 +2,7 @@ import React, { useState} from 'react';
 import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
 
 const Login = (props) => {
+  console.log(props)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [noEmail, setNoEmail] = useState(false);
@@ -25,11 +26,10 @@ const Login = (props) => {
         })
       .then(
         (data) => {
-          console.log(data.sessionToken)
-          
           props.updateToken(data.sessionToken);
-        }
+          console.log(data.sessionToken)}
       )
+      .catch((err) => console.log(err))
     }else{
       setNoEmail(true);
     }
