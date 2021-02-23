@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Auth from './auth/Auth';
 import Sitebar from './components/Navbar';
 import './App.css';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/Getrecipes.js';
+// import Dashboard from './components/Dashboard';
 // import WorkoutIndex from './workouts/WorkoutIndex'
 
 
