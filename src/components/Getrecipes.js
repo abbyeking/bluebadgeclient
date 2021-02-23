@@ -5,13 +5,19 @@ const GetRecipes = () => {
     const [title, setTitle] = useState([])
     const [id, setId] = useState ([])
 
-    useEffect(async () => {
-        let query = 'pizza'
-        const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=d0ef56ca93554a3ba80bc1b25e91edc3&query=${query}`
+
+    const getRecipesByQuery = async (q) => {
+        const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=d0ef56ca93554a3ba80bc1b25e91edc3&query=${q}`
         let response = await fetch(url)
         let dan = await response.json()
-        setRecipes(dan)
-        console.log(dan)
+        return dan.results
+    }
+
+    useEffect(async () => {
+        let query = 'pizza'
+        let result = await getRecipesByQuery(query)
+        console.log(result)
+        setRecipes(result)
     }, [])
    
     const sendRecipe = async(title, url) => {
