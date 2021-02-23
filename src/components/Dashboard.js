@@ -1,54 +1,57 @@
 import React from 'react';
-import ReactDOM from "react-dom";
-import Modal from "react-bootstrap/Modal";
-import ModalBody from "react-bootstrap/ModalBody";
-import ModalHeader from "react-bootstrap/ModalHeader";
-import ModalFooter from "react-bootstrap/ModalFooter";
-import ModalTitle from "react-bootstrap/ModalTitle";
+import {Table, Button} from 'reactstrap';
 
-const MyVerticallyCenteredModal = (props) => {
+const RecipeTable = (props) => {
+
+    const deleteRecipe = (recipe) => {
+        fetch(`http://localhost:3000/log/${recipe.rId}` , {
+            method: 'DELETE',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': props.token
+            })
+        })
+        .then(() => props.fetchRecipes())
+    }
+
+
+    const RecipeMapper = () => {
+        return props.recipes.map((recipe,index) => {
+            return(
+                <tr key = {index}>
+                    <th scope = "row">{recipe.rId}</th>
+                    <td>{recipe.rating}</td>
+                    <td>{recipe.entry}</td>
+                    <td>
+                        <Button color="warning" onClick= {() => {props.editUpdateRecipe(recipe); props.updateOn()}}>Update</Button>
+                        <Button color="danger" onClick={() => {deleteRecipe(recipe)}}>Delete</Button>
+                    </td>
+                </tr>
+            )
+        })
+    }
+
     return (
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Search
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <h4>Ingredients</h4>
-          <p>
-            What ingredients are you working with today?
-          </p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer>
-      </Modal>
-    );
-  }
-  
-const App = () => {
-    const [modalShow, setModalShow] = React.useState(false);
-  
-    return (
-      <>
-        <Button variant="primary" onClick={() => setModalShow(true)}>
-          Launch vertically centered modal
-        </Button>
-  
-        <MyVerticallyCenteredModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-        />
-      </>
-    );
-  }
-  
-render(<App />);
+    <>
+        <h3>Recipe</h3>
+        <hr />
+        <Table striped>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Result</th>
+                    <th>Description</th>
+                    <th>Definition</th>
+                </tr>
+            </thead>
+            <tbody>
+                {RecipeMapper()}
+            </tbody>
+        </Table>
+    </>
+    )
+}
+
+export default RecipeTable;
 
 
