@@ -5,4 +5,4 @@ const FavoritesView = () => {
     )
 }
 
-export default FavoritesView
+export default FavoritesView;
