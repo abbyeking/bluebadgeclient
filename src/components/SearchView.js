@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const GetRecipes = () => {
+const SearchView = () => {
     const [recipes, setRecipes] = useState([])
     const [title, setTitle] = useState([])
     const [id, setId] = useState([])
@@ -12,7 +12,11 @@ const GetRecipes = () => {
         let dan = await response.json()
         return dan.results
     }
-
+    const recipeSearch = async () => {
+        let qResult = await getRecipesByQuery(userSearch)
+        setRecipes(qResult)
+    }
+// {q.id}
     // useEffect(async () => {
     //     let query = 'pizza'
     //     let result = await getRecipesByQuery(query)
@@ -45,15 +49,16 @@ const GetRecipes = () => {
 
     return (
         <div>
-            <form>
+            {/* <form>
                 <input onChange={(e) => { setTitle(e.target.value) }} />
                 <input onChange={(e) => { setId(e.target.value) }} />
                 <button onClick={(e) => {
                     e.preventDefault();
                     sendRecipe()
                 }}>Submit Form</button>
-            </form>
+            </form> */}
             <h3>Lookup a recipe: <input onChange={(e) => setUserSearch(e.target.value)}></input></h3>
+            <button onClick={recipeSearch}>Submit</button>
 
 
             {recipes?.map((rec) => {
@@ -79,4 +84,4 @@ const GetRecipes = () => {
         </div>
     )
 }
-export default GetRecipes;
+export default SearchView;
