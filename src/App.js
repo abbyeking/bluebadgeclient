@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import Auth from './auth/Auth';
 import Sitebar from './components/Navbar';
 import './App.css';
-import GetRecipes from './components/Getrecipes.js';
+import SearchView from './components/SearchView';
+import FavoritesView from './components/FavoritesView';
 
 
 
 function App() {
 
   const [sessionToken, setSessionToken] = useState('');
-
+  //const [currentView, setCurrentView] = useState('Favorites')
+  const [currentView, setCurrentView] = useState('Search')
   useEffect( () => {
     if (localStorage.getItem('token')) {
       setSessionToken(localStorage.getItem('token'));
@@ -31,7 +33,9 @@ function App() {
     // under what circumstances would this be false? udateToken both sets the same token in the state variable and the
     // local storage. works just as well to check if a token exists without comparing the state to the local storage
     return(sessionToken === localStorage.getItem('token')  
-      ? <GetRecipes token={sessionToken} />
+      ? currentView == "Favorites" 
+        ? <FavoritesView token={sessionToken} />
+        :<SearchView token={sessionToken} />
       : <Auth updateToken={updateToken} />
       )
   }
