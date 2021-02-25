@@ -5,8 +5,6 @@ import './App.css';
 import SearchView from './components/SearchView';
 import FavoritesView from './components/FavoritesView';
 
-
-
 function App() {
 
   const [sessionToken, setSessionToken] = useState('');
