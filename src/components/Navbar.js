@@ -12,7 +12,7 @@ import {
     Button,
 } from 'reactstrap';
 
-import GetRecipes from './SearchView';
+import SearchView from './SearchView';
 import FavoritesView from './FavoritesView';
 
 const Sitebar = (props) => {
@@ -22,7 +22,7 @@ const Sitebar = (props) => {
         setIsOpen(newIsOpen);
     }
     const pages = [
-        {component: <GetRecipes />, title:"Search"},
+        {component: <SearchView />, title:"Search"},
         {component: <FavoritesView />, title:"Favorites"}
     ]
     const [component, setComponent] = React.useState(pages[0].component);
