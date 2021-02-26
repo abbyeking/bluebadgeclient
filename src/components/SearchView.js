@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
+// import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 
-const SearchView = () => {
+const SearchView = (props) => {
     const [recipes, setRecipes] = useState([])
     const [title, setTitle] = useState([])
-    const [id, setId] = useState([])
+    const [rId, setrId] = useState([])
     const [userSearch, setUserSearch] = useState()
 
     const getRecipesByQuery = async (q) => {
@@ -21,19 +22,19 @@ const SearchView = () => {
         console.log(userSearch)
     },[userSearch])
 
-    const sendRecipe = async (title, id) => {
+    const sendRecipe = async (title, rId) => {
+        console.log(title,rId);
         fetch("http://localhost:3000/recipe/create", {
 
             method: "POST",
             headers: {
-                'Authorization': localStorage.getItem('token'),
+                'Authorization': props.token,
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                recipe: {
+            body: JSON.stringify({ 
                     title: title,
-                    id: id
-                }
+                    rId: rId
+                
             })
         })
             .then(res => { console.log(res) })
@@ -52,7 +53,7 @@ const SearchView = () => {
                         <h4 key={rec.id}>{rec.title} <i>{rec.maxReadyTime}</i></h4>
                         <button onClick={(e) => {
                             e.preventDefault();
-                            sendRecipe(rec.title, rec.url)
+                            sendRecipe(rec.title, rec.id)
                         }}>Save Recipe</button>
                     </div>
                 )

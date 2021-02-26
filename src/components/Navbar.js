@@ -25,7 +25,7 @@ const Sitebar = (props) => {
         {component: <SearchView />, title:"Search"},
         {component: <FavoritesView />, title:"Favorites"}
     ]
-    const [component, setComponent] = React.useState(pages[0].component);
+   
 
     return (
         <div>
@@ -39,7 +39,7 @@ const Sitebar = (props) => {
                         </NavItem>
            <div>
                 {pages.map((page,p) =>
-                    <Button key={p} onClick={()=>setComponent(page.component)} 
+                    <Button key={p} onClick={()=>props.setComponent(page.component)} 
                     className="">{page.title}</Button>)} 
             </div>
                     </Nav>

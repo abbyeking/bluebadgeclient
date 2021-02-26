@@ -1,10 +1,12 @@
 import react, { useEffect,useState } from 'react';
+// import Navbar from '../components/Navbar';
+import './FavoritesView.css';
 
-const FavoritesView = () => {
+const FavoritesView = (props) => {
     const[favorites,setFavorites] =useState([]);
 
-    const fetchRecipes = (props) => {
-        fetch(`http://localhost:3000/create/`, {
+    const handleSubmit = () => {
+        fetch('http://localhost:3000/recipe', {
             method: 'GET',
             headers: new Headers ({
                 'Content-Type': 'application/json',
@@ -17,13 +19,13 @@ const FavoritesView = () => {
     }
 
     useEffect(()=>{
-        fetchRecipes();
+        handleSubmit();
     }, [])
 
 
     return (
         <div>
-            <h1>View Your Favorites</h1>
+            <h1 className="favorites">View My Favorites</h1>
         </div>
     )
 }
