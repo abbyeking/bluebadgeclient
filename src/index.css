@@ -4,11 +4,15 @@ html, body{
   background-image: url('./assets/noisebig.png');
   background-color: #f6f4ec;
   color: #2C3B4B;
-  /* font-family: 'Merriweather Sans', sans-serif, !important; */
-  font-family: 'Limelight', cursive, !important;
+  font-family: 'Merriweather Sans', sans-serif !important;
+
+  /* font-family: 'Limelight', cursive, !important; */
   /* color: greenyellow; */
 }
-#bootoveride{
+/* #bootoveride{
   font-family: 'Limelight', cursive, !important;
-  /* color: greenyellow; */
+  color: greenyellow;
+} */
+h1{
+  font-family: 'Merriweather Sans', sans-serif !important; 
 }
