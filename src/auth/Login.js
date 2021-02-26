@@ -1,5 +1,6 @@
 import React, { useState} from 'react';
 import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
+import '../index.css';
 
 const Login = (props) => {
   console.log(props)
