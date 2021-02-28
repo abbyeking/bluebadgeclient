@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './Navbar.css';
-// import '../index.css';
 
 import {
     Collapse,
@@ -21,10 +20,10 @@ const Sitebar = (props) => {
         let newIsOpen = !isOpen;
         setIsOpen(newIsOpen);
     }
-    const pages = [
-        {component: <SearchView />, title:"Search"},
-        {component: <FavoritesView />, title:"Favorites"}
-    ]
+    // const pages = [
+    //     {component: <SearchView />, title:"Search"},
+    //     {component: <FavoritesView />, title:"Favorites"}
+    // ]
    
 
     return (
@@ -37,11 +36,11 @@ const Sitebar = (props) => {
                         <NavItem>
                             <Button onClick={props.clearToken}>Logout</Button>
                         </NavItem>
-           <div>
+           {/* <div>
                 {pages.map((page,p) =>
                     <Button key={p} onClick={()=>props.setComponent(page.component)} 
                     className="">{page.title}</Button>)} 
-            </div>
+            </div> */}
                     </Nav>
                 </Collapse>
             </Navbar>

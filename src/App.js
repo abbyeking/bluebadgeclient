@@ -6,14 +6,13 @@ import SearchView from './components/SearchView';
 import FavoritesView from './components/FavoritesView';
 
 function App() {
-  const pages = [
-    {component: <SearchView />, title:"Search"},
-    {component: <FavoritesView />, title:"Favorites"}
-]
+//   const pages = [
+//     {component: <SearchView />, title:"Search"},
+//     {component: <FavoritesView />, title:"Favorites"}
+// ]
   const [sessionToken, setSessionToken] = useState('');
-  //const [currentView, setCurrentView] = useState('Favorites')
   const [currentView, setCurrentView] = useState('Search')
-  const [component, setComponent] = useState(pages[0].component);
+  const [component, setComponent] = useState('');
 
   useEffect( () => {
     if (localStorage.getItem('token')) {
@@ -45,7 +44,7 @@ function App() {
 
   return (
     <div className="App">
-      <Sitebar clearToken={clearToken} setComponent={setComponent}/>
+      <Sitebar clearToken={clearToken} />
       {protectedViews()}
       <FavoritesView />
     </div>

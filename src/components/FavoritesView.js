@@ -1,4 +1,5 @@
 import react, { useEffect,useState } from 'react';
+import {Route, Link, Switch} from 'react-router-dom';
 // import Navbar from '../components/Navbar';
 import './FavoritesView.css';
 
@@ -25,7 +26,9 @@ const FavoritesView = (props) => {
 
     return (
         <div>
+            
             <h1 className="favorites">View My Favorites</h1>
+
         </div>
     )
 }
