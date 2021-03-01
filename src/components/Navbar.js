@@ -1,4 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import './Navbar.css';
+// import '../index.css';
 
 import {
     Collapse,
@@ -23,27 +25,29 @@ const Sitebar = (props) => {
         {component: <SearchView />, title:"Search"},
         {component: <FavoritesView />, title:"Favorites"}
     ]
-    const [component, setComponent] = React.useState(pages[0].component);
+   
 
-return(
-    <Navbar color= "faded" light expand="md">
-        <NavbarBrand href="/">Yum!</NavbarBrand>
-        <NavbarToggler onClick = {toggle} />
-        <Collapse isOpen={isOpen} navbar >
-        <Nav className = "ml-auto" navbar >
-            <Navbar>
-            <Button onClick={props.clearToken}>Logout</Button>
-            </Navbar>
-            <br></br>
-            <div>
+    return (
+        <div>
+            <Navbar color="faded" light expand="md" id="fullNav">
+                <NavbarBrand href="/">Welcome to Yum!</NavbarBrand>
+                <NavbarToggler onClick={toggle} />
+                <Collapse isOpen={isOpen} navbar >
+                    <Nav className="ml-auto" navbar >
+                        <NavItem>
+                            <Button onClick={props.clearToken}>Logout</Button>
+                        </NavItem>
+           <div>
                 {pages.map((page,p) =>
-                    <Button key={p} onClick={()=>setComponent(page.component)} 
+                    <Button key={p} onClick={()=>props.setComponent(page.component)} 
                     className="">{page.title}</Button>)} 
             </div>
-        </Nav>
-        </Collapse>
-    </Navbar>
-)
+                    </Nav>
+                </Collapse>
+            </Navbar>
+        </div>
+    )
+
 }
 
 export default Sitebar;
