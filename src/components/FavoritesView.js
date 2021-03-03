@@ -1,7 +1,6 @@
 import react, { useEffect, useState } from 'react';
 // import Navbar from '../components/Navbar';
 import './FavoritesView.css';
-import  './DetailsView';
 import {Button} from 'reactstrap';
 
 

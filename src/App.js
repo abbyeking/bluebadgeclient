@@ -4,7 +4,7 @@ import Sitebar from './components/Navbar';
 import './App.css';
 import SearchView from './components/SearchView';
 import FavoritesView from './components/FavoritesView';
-import DetailsView from './components/DetailsView';
+
 
 function App() {
 
