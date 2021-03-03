@@ -19,7 +19,7 @@ const SearchView = (props) => {
     }
 
     useEffect(()=>{
-        console.log(userSearch)
+        // console.log(userSearch)
     },[userSearch])
 
     const sendRecipe = async (title, rId) => {

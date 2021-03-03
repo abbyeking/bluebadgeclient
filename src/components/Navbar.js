@@ -20,10 +20,7 @@ const Sitebar = (props) => {
         let newIsOpen = !isOpen;
         setIsOpen(newIsOpen);
     }
-    // const pages = [
-    //     {component: <SearchView />, title:"Search"},
-    //     {component: <FavoritesView />, title:"Favorites"}
-    // ]
+
    
 
     return (
