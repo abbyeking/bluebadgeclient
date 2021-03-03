@@ -5,12 +5,12 @@ const Signup = (props) => {
   console.log(props);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [noEmail, setNoEmail] = useState(false);
+  const [noPass, setNoPass] = useState(false);
 
 let handleSubmit = (event) => {
   event.preventDefault();
-  if(email){
-    setNoEmail(false);
+  if(password.length > 4 && password.length < 14){
+    setNoPass(false);
     console.log(email, password);
     fetch('http://localhost:3000/user/signup',
       {
@@ -33,7 +33,7 @@ let handleSubmit = (event) => {
       }
     )
   }else{
-    setNoEmail(true);
+    setNoPass(true);
   } 
 }
 
@@ -43,12 +43,12 @@ let handleSubmit = (event) => {
       <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Label htmlFor='email'>Email</Label>
-          <Input onChange={(e)=>setEmail(e.target.value)}email='email' value={email}/>
-          <p> {(noEmail) ? "Email is required" : ""}</p>
+          <Input required onChange={(e)=>setEmail(e.target.value)}email='email' value={email}/>
         </FormGroup>
         <FormGroup>
           <Label htmlFor='password'>Password</Label>
-          <Input onChange={(e)=>setPassword(e.target.value)}name='password' value={password}/>
+          <Input required onChange={(e)=>setPassword(e.target.value)}name='password' value={password}/>
+          <p style={{color:"red"}} > {(noPass) ? "Password must be between 4 and 13 characters" : ""}</p>
         </FormGroup>
         <Button type='submit'>Signup</Button>
       </Form>
