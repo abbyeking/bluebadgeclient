@@ -1,3 +1,4 @@
+
 import {useState} from 'react';
 
 const UpdateForm = ({userRecipe}) => {
@@ -30,6 +31,7 @@ const UpdateForm = ({userRecipe}) => {
     //         method: "DELETE"
     //     })
     // }
+
     return (
         <div>
             <h3>Title: <input placeholder={userRecipe.title} onChange={e => setTitle(e.target.value)}/></h3>
@@ -39,4 +41,6 @@ const UpdateForm = ({userRecipe}) => {
         </div>
     )
 }
+
 export default UpdateForm
+
