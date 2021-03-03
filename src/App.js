@@ -29,7 +29,7 @@ function App() {
     setSessionToken('');
   }
   const protectedViews = () => {
-    // under what circumstances would this be false? udateToken both sets the same token in the state variable and the
+    // under what circumstances would this be false? updateToken both sets the same token in the state variable and the
     // local storage. works just as well to check if a token exists without comparing the state to the local storage
     return(sessionToken === localStorage.getItem('token')  
       ? currentView == "Favorites" 
