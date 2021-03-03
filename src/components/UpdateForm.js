@@ -1,9 +1,9 @@
-import {useState} from 'react'
+
+import {useState} from 'react';
 
 const UpdateForm = ({userRecipe}) => {
     const [title, setTitle] = useState(userRecipe.title)
     // const [recipeURL, setRecipeURL] = useState(userRecipe.url)
-
     const updateRecipe = () => {
         console.log(userRecipe.id, title )
         // console.log(userRecipe.id, title, recipeURL )
@@ -20,13 +20,12 @@ const UpdateForm = ({userRecipe}) => {
             let newRecipe = userRecipe
             newRecipe.title = title
             // newRecipe.recipeUrl = recipeUrl
-            setUserRecipe(newRecipe)
-            getFavs()
-            setToUpdate(false)
+            // setUserRecipe(newRecipe)
+            // getFavs()
+            // setToUpdate(false)
         })
     }
     console.log(userRecipe)
-
     // const deleteRecipe = (id) => {
     //     fetch(`http://localhost:3000/delete/${id}`, {
     //         method: "DELETE"
@@ -44,3 +43,4 @@ const UpdateForm = ({userRecipe}) => {
 }
 
 export default UpdateForm
+
