@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import './Navbar.css';
 
 import {
     Collapse,
@@ -10,6 +11,9 @@ import {
     Button,
 } from 'reactstrap';
 
+import SearchView from './SearchView';
+import FavoritesView from './FavoritesView';
+
 const Sitebar = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => {
@@ -17,19 +21,29 @@ const Sitebar = (props) => {
         setIsOpen(newIsOpen);
     }
 
- return(
-     <Navbar color= "faded" light expand="md">
-         <NavbarBrand href="/">Yum!</NavbarBrand>
-         <NavbarToggler onClick = {toggle} />
-        <Collapse isOpen={isOpen} navbar >
-         <Nav className = "ml-auto" navbar >
-             <NavItem>
-             <Button onClick={props.clickLogout}>Logout</Button>
-             </NavItem>
-         </Nav>
-         </Collapse>
-     </Navbar>
- )
+   
+
+    return (
+        <div>
+            <Navbar color="faded" light expand="md" id="fullNav">
+                <NavbarBrand href="/">Welcome to Yum!</NavbarBrand>
+                <NavbarToggler onClick={toggle} />
+                <Collapse isOpen={isOpen} navbar >
+                    <Nav className="ml-auto" navbar >
+                        <NavItem>
+                            <Button onClick={props.clearToken}>Logout</Button>
+                        </NavItem>
+           {/* <div>
+                {pages.map((page,p) =>
+                    <Button key={p} onClick={()=>props.setComponent(page.component)} 
+                    className="">{page.title}</Button>)} 
+            </div> */}
+                    </Nav>
+                </Collapse>
+            </Navbar>
+        </div>
+    )
+
 }
 
 export default Sitebar;

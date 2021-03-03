@@ -1,3 +1,18 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+html, body{
   margin: 0;
+  background-image: url('./assets/noisebig.png');
+  background-color: #f6f4ec;
+  color: #2C3B4B;
+  font-family: 'Merriweather Sans', sans-serif !important;
+
+  /* font-family: 'Limelight', cursive, !important; */
+  /* color: greenyellow; */
+}
+/* #bootoveride{
+  font-family: 'Limelight', cursive, !important;
+  color: greenyellow;
+} */
+h1{
+  font-family: 'Merriweather Sans', sans-serif !important; 
 }
