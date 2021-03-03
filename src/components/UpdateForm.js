@@ -1,4 +1,5 @@
-import {useState} from 'react'
+import {useState} from 'react';
+
 const UpdateForm = ({userRecipe}) => {
     const [title, setTitle] = useState(userRecipe.title)
     // const [recipeURL, setRecipeURL] = useState(userRecipe.url)
@@ -18,9 +19,9 @@ const UpdateForm = ({userRecipe}) => {
             let newRecipe = userRecipe
             newRecipe.title = title
             // newRecipe.recipeUrl = recipeUrl
-            setUserRecipe(newRecipe)
+            // setUserRecipe(newRecipe)
             // getFavs()
-            setToUpdate(false)
+            // setToUpdate(false)
         })
     }
     console.log(userRecipe)
