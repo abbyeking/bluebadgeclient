@@ -4,6 +4,7 @@ import Sitebar from './components/Navbar';
 import './App.css';
 import SearchView from './components/SearchView';
 import FavoritesView from './components/FavoritesView';
+import UpdateForm from './components/UpdateForm';
 
 function App() {
   const pages = [
@@ -48,6 +49,7 @@ function App() {
       <Sitebar clearToken={clearToken} setComponent={setComponent}/>
       {protectedViews()}
       <FavoritesView />
+      <UpdateForm />
     </div>
   );
 }
