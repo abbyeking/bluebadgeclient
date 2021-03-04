@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Navbar.css';
+import styled from 'styled-components'
+import StyledButton from './Styles/Button'
 
 import {
     Collapse,
@@ -31,7 +33,7 @@ const Sitebar = (props) => {
                 <Collapse isOpen={isOpen} navbar >
                     <Nav className="ml-auto" navbar >
                         <NavItem>
-                            <Button onClick={props.clearToken}>Logout</Button>
+                            <StyledButton onClick={props.clearToken}>Logout</StyledButton>
                         </NavItem>
            {/* <div>
                 {pages.map((page,p) =>

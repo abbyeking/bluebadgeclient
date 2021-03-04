@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react'
 // import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
+// import styled from 'styled-components'
+import StyledButton from './Styles/Button'
+import StyledH1 from './Styles/StyledH1'
+import StyledOutterDiv from './Styles/StyledOutterDiv'
+
 
 const SearchView = (props) => {
     const [recipes, setRecipes] = useState([])
-    const [title, setTitle] = useState([])
-    const [rId, setrId] = useState([])
+    // const [title, setTitle] = useState([])
+    // const [rId, setrId] = useState([])
     const [userSearch, setUserSearch] = useState()
 
     const getRecipesByQuery = async (q) => {
@@ -42,24 +47,26 @@ const SearchView = (props) => {
     }
 
     return (
-        <div>
-            <h3>Lookup a recipe: <input onChange={(e) => setUserSearch(e.target.value)}></input></h3>
-            <button onClick={recipeSearch}>Submit</button>
+        <StyledOutterDiv>
+            <StyledH1>Search for a Recipe</StyledH1>
+            <h3>Lookup by ingredients and diet: <input onChange={(e) => setUserSearch(e.target.value)}></input></h3>
+            <StyledButton onClick={recipeSearch}>Submit</StyledButton>
+            <br></br>
 
 
             {recipes?.map((rec) => {
                 return (
                     <div>
                         <h4 key={rec.id}>{rec.title} <i>{rec.maxReadyTime}</i></h4>
-                        <button onClick={(e) => {
+                        <StyledButton onClick={(e) => {
                             e.preventDefault();
                             sendRecipe(rec.title, rec.id)
-                        }}>Save Recipe</button>
+                        }}>Save Recipe</StyledButton>
                     </div>
                 )
             })}
 
-        </div>
+        </StyledOutterDiv>
     )
 }
 export default SearchView;
