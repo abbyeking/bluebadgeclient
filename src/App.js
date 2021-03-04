@@ -1,21 +1,60 @@
-// adding css to jsx is that easy
-import './App.css'; // This pattern is preferred where css for this component has a matching .css filename
+import React, { useState, useEffect } from 'react';
+import Auth from './auth/Auth';
+import Sitebar from './components/Navbar';
+import './App.css';
+import SearchView from './components/SearchView';
+import FavoritesView from './components/FavoritesView';
+// import UpdateForm from './components/UpdateForm';
 
-// A component import
-import Navbar from './components/Navbar'
 
-
-// Defining our <App /> component the function name matches the file name
 function App() {
-  // All functional components need to return jsx with one parent element
-  return ( 
-    <div className="App"> {/* Parent Element. Also we can't use the word class, so we use className in jsx*/}
-      {/* Navbar is our imported component*/}
-      <Navbar />
-      <h1></h1>
+
+  const [sessionToken, setSessionToken] = useState('');
+  const [currentView, setCurrentView] = useState('Search')
+  const [component, setComponent] = useState('');
+
+  useEffect( () => {
+    if (localStorage.getItem('token')) {
+      setSessionToken(localStorage.getItem('token'));
+    }
+  }, []);
+
+  const updateToken = (newToken) => {
+    localStorage.setItem('token', newToken);
+    setSessionToken(newToken);
+    console.log(sessionToken); 
+  };
+
+  const clearToken = () => {
+    localStorage.clear();
+    setSessionToken('');
+  }
+
+  const protectedViews = () => {
+    console.log(currentView);
+    // under what circumstances would this be false? udateToken both sets the same token in the state variable and the
+    // local storage. works just as well to check if a token exists without comparing the state to the local storage
+    return(sessionToken === localStorage.getItem('token')  
+        ?(
+          <>
+          <br></br>
+            <SearchView token={sessionToken} />
+            <br></br>
+            <FavoritesView token={sessionToken} />
+          </>
+        )         
+        :<Auth updateToken={updateToken} />
+      )
+  }
+
+  return (
+    <div className="App">
+      <br></br>
+      <Sitebar clearToken={clearToken} />
+      {protectedViews()}
+
     </div>
   );
 }
 
-// Makes our Component available for import
 export default App;

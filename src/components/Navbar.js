@@ -1,13 +1,51 @@
-import './Navbar.css'
+import React, { useState } from 'react';
+import './Navbar.css';
+import styled from 'styled-components'
+import StyledButton from './Styles/Button'
 
-// Function name matches file name
-const Navbar = () => {
-    // return must have one parent element
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    Button,
+} from 'reactstrap';
+
+import SearchView from './SearchView';
+import FavoritesView from './FavoritesView';
+
+const Sitebar = (props) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const toggle = () => {
+        let newIsOpen = !isOpen;
+        setIsOpen(newIsOpen);
+    }
+
+   
+
     return (
-        <nav>
-        </nav>
+        <div>
+            <Navbar color="faded" light expand="md" id="fullNav">
+                <NavbarBrand href="/">Welcome to Yum!</NavbarBrand>
+                <NavbarToggler onClick={toggle} />
+                <Collapse isOpen={isOpen} navbar >
+                    <Nav className="ml-auto" navbar >
+                        <NavItem>
+                            <StyledButton onClick={props.clearToken}>Logout</StyledButton>
+                        </NavItem>
+           {/* <div>
+                {pages.map((page,p) =>
+                    <Button key={p} onClick={()=>props.setComponent(page.component)} 
+                    className="">{page.title}</Button>)} 
+            </div> */}
+                    </Nav>
+                </Collapse>
+            </Navbar>
+        </div>
     )
+
 }
 
-// Makes it available for import
-export default Navbar;
+export default Sitebar;
