@@ -4,11 +4,11 @@ import './FavoritesView.css';
 import {Button} from 'reactstrap';
 
 
-const FavoritesView = (props) => {
+const FavoritesView = (props, userRecipe) => {
     const [favorites, setFavorites] = useState([]);
+    const [title, setTitle] = useState([userRecipe.title]);
 
     const handleSubmit = () => {
-        // e.preventDefault()
         fetch('http://localhost:3000/recipe/', {
             method: 'GET',
             headers: new Headers({
@@ -35,6 +35,23 @@ const FavoritesView = (props) => {
         })
     }
 
+        const updateRecipe = (id) => {
+            console.log(id)
+            fetch(`http://localhost:3000/recipe/update/${id}`, {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": props.token
+                },
+                body: JSON.stringify({
+                    title: title,
+                })
+            }).then(() => {
+                handleSubmit();
+                console.log(title);
+            })
+        }
+
 
     return (
         <div>
@@ -50,6 +67,7 @@ const FavoritesView = (props) => {
                         <p>{favorite.title}</p>
                         <p>{favorite.rId}</p>
                         <button onClick={() => {deleteRecipe(favorite.id)}}>Delete</button>
+                        <input onChange={(e) => setTitle(e.target.value)}></input><button onClick={() => {updateRecipe(favorite.id)}}>Update</button>
                     </div>
                     
                 )
@@ -61,7 +79,6 @@ const FavoritesView = (props) => {
     )
 
 }
-
 
 
 export default FavoritesView;
