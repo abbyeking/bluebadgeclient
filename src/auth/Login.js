@@ -1,6 +1,9 @@
 import React, { useState} from 'react';
 import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
 import '../index.css';
+import styled from 'styled-components'
+import StyledButton from '../components/Styles/Button'
+
 
 const Login = (props) => {
   console.log(props)
@@ -50,7 +53,7 @@ const Login = (props) => {
           <Label htmlFor='password'>Password</Label>
           <Input onChange={(e)=>setPassword(e.target.value)} name='password' value={password}/>
         </FormGroup>
-        <Button type='submit'>Login</Button>
+        <StyledButton type='submit'>Login</StyledButton>
       </Form>
     </div>
   );

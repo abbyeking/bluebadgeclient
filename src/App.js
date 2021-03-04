@@ -4,7 +4,7 @@ import Sitebar from './components/Navbar';
 import './App.css';
 import SearchView from './components/SearchView';
 import FavoritesView from './components/FavoritesView';
-import UpdateForm from './components/UpdateForm';
+// import UpdateForm from './components/UpdateForm';
 
 
 function App() {
@@ -35,7 +35,9 @@ function App() {
     return(sessionToken === localStorage.getItem('token')  
         ?(
           <>
+          <br></br>
             <SearchView token={sessionToken} />
+            <br></br>
             <FavoritesView token={sessionToken} />
           </>
         )         
@@ -44,6 +46,7 @@ function App() {
   }
   return (
     <div className="App">
+      <br></br>
       <Sitebar clearToken={clearToken} />
       {protectedViews()}
 

@@ -1,14 +1,17 @@
-import react, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import Navbar from '../components/Navbar';
 import './FavoritesView.css';
-import {Button} from 'reactstrap';
+// import styled from 'styled-components'
+import StyledButton from './Styles/Button'
+import StyledH1 from './Styles/StyledH1'
+import StyledOutterDiv from './Styles/StyledOutterDiv'
 
 
-const FavoritesView = (props) => {
+const FavoritesView = (props, userRecipe) => {
     const [favorites, setFavorites] = useState([]);
+    const [title, setTitle] = useState([userRecipe.title]);
 
     const handleSubmit = () => {
-        // e.preventDefault()
         fetch('http://localhost:3000/recipe/', {
             method: 'GET',
             headers: new Headers({
@@ -23,7 +26,7 @@ const FavoritesView = (props) => {
     }
 
     const deleteRecipe = (id) => {
-        fetch (`http://localhost:3000/recipe/delete/${id}` , {
+        fetch(`http://localhost:3000/recipe/delete/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json",
@@ -35,33 +38,50 @@ const FavoritesView = (props) => {
         })
     }
 
+    const updateRecipe = (id) => {
+        console.log(id)
+        fetch(`http://localhost:3000/recipe/update/${id}`, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": props.token
+            },
+            body: JSON.stringify({
+                title: title,
+            })
+        }).then(() => {
+            handleSubmit();
+            console.log(title);
+        })
+    }
+
 
     return (
-        <div>
-            <h1 className="favorites">Favorites</h1>
-            <button onClick={() => handleSubmit()}>View Favorites</button>
+        <StyledOutterDiv>
+            <StyledH1 className="favorites">Favorites</StyledH1>
+            <StyledButton onClick={() => handleSubmit()}>View Favorites</StyledButton>
             { favorites?.length > 0 ?
-            <>
-            {favorites.map(favorite => {
-                return (
-                    
-                    <div>
-                        <p></p>
-                        <p>{favorite.title}</p>
-                        <p>{favorite.rId}</p>
-                        <button onClick={() => {deleteRecipe(favorite.id)}}>Delete</button>
-                    </div>
-                    
-                )
-            })}
-            </>
-            : null
+                <>
+                    {favorites.map(favorite => {
+                        return (
+
+                            <div>
+                                <p></p>
+                                <p>{favorite.title}</p>
+                                <p>{favorite.rId}</p>
+                                <StyledButton onClick={() => { deleteRecipe(favorite.id) }}>Delete</StyledButton>
+                                <input onChange={(e) => setTitle(e.target.value)}></input><StyledButton onClick={() => { updateRecipe(favorite.id) }}>Update Title</StyledButton>
+                            </div>
+
+                        )
+                    })}
+                </>
+                : null
             }
-        </div>
+        </StyledOutterDiv>
     )
 
 }
-
 
 
 export default FavoritesView;
