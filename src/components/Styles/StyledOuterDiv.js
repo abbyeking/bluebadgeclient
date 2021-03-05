@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-const StyledOutterDiv = styled.div`
+const StyledOuterDiv = styled.div`
 padding: 50 px;
 text-align: center;
 `
 
-export default StyledOutterDiv
+export default StyledOuterDiv

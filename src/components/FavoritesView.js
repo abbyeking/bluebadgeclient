@@ -4,7 +4,7 @@ import './FavoritesView.css';
 // import styled from 'styled-components'
 import StyledButton from './Styles/Button'
 import StyledH1 from './Styles/StyledH1'
-import StyledOutterDiv from './Styles/StyledOutterDiv'
+import StyledOuterDiv from './Styles/StyledOuterDiv'
 import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button
@@ -61,7 +61,7 @@ const FavoritesView = (props, userRecipe) => {
 
 
     return (
-        <StyledOutterDiv>
+        <StyledOuterDiv>
             <Card>
                 <CardBody>
             <StyledH1 className="favorites">Favorites</StyledH1>
@@ -89,7 +89,7 @@ const FavoritesView = (props, userRecipe) => {
             }
                 </CardBody>
             </Card>
-        </StyledOutterDiv>
+        </StyledOuterDiv>
     )
 
 }

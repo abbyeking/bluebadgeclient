@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 // import styled from 'styled-components'
 import StyledButton from './Styles/Button'
 import StyledH1 from './Styles/StyledH1'
-import StyledOutterDiv from './Styles/StyledOutterDiv'
+import StyledOuterDiv from './Styles/StyledOuterDiv'
 import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button
@@ -67,7 +67,7 @@ const SearchView = (props) => {
     }
 
     return (
-        <StyledOutterDiv>
+        <StyledOuterDiv>
             <StyledH1>Search for a Recipe</StyledH1>
             <h3>Lookup by ingredients and diet: <input onChange={(e) => setUserSearch(e.target.value)}></input></h3>
             <StyledButton onClick={() => recipeSearch()}>Submit</StyledButton>
@@ -98,7 +98,7 @@ const SearchView = (props) => {
                 )
             })}</div>
 
-        </StyledOutterDiv>
+        </StyledOuterDiv>
     )
 }
 export default SearchView;
