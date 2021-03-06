@@ -28,7 +28,7 @@ const Login = (props) => {
         })
       .then(
         (data) => {
-          props.updateToken(data.sessionToken);
+          props.updateToken(data.sessionToken)
           }
       )
       .catch((err) => console.log(err))
