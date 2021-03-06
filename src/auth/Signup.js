@@ -2,6 +2,7 @@ import React, { useState} from 'react';
 import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
 import styled from 'styled-components';
 import StyledButton from '../components/Styles/Button'
+import APIURL from './helpers/environment'
 
 const Signup = (props) => {
   const [email, setEmail] = useState('');
@@ -12,7 +13,7 @@ let handleSubmit = (event) => {
   event.preventDefault();
   if(password.length > 4 && password.length < 14){
     setNoPass(false);
-    fetch('http://localhost:3000/user/signup',
+    fetch(`${APIURL}/user/signup`,
       {
         method: 'POST',
         body: JSON.stringify({user: {email: email, password: password}}),

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import StyledButton from './Styles/Button'
 import StyledH1 from './Styles/StyledH1'
 import StyledOutterDiv from './Styles/StyledOutterDiv'
+import APIURL from './helpers/environment'
 
 
 const SearchView = (props) => {
@@ -23,7 +24,7 @@ const SearchView = (props) => {
     },[userSearch])
 
     const sendRecipe = async (title, rId) => {
-        fetch("http://localhost:3000/recipe/create", {
+        fetch(`${APIURL}/recipe/create`, {
 
             method: "POST",
             headers: {

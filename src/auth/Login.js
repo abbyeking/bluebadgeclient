@@ -3,6 +3,7 @@ import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
 import '../index.css';
 import styled from 'styled-components'
 import StyledButton from '../components/Styles/Button'
+import APIURL from './helpers/environment'
 
 
 const Login = (props) => {
@@ -15,7 +16,7 @@ const Login = (props) => {
     
     if(email){
       
-      fetch('http://localhost:3000/user/login', 
+      fetch(`${APIURL}/user/login`, 
         {
           method: 'POST',
           body: JSON.stringify({user: {email: email, password: password}}),

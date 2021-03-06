@@ -3,6 +3,7 @@ import './FavoritesView.css';
 import StyledButton from './Styles/Button'
 import StyledH1 from './Styles/StyledH1'
 import StyledOutterDiv from './Styles/StyledOutterDiv'
+import APIURL from './helpers/environment'
 
 
 const FavoritesView = (props, userRecipe) => {
@@ -10,7 +11,7 @@ const FavoritesView = (props, userRecipe) => {
     const [title, setTitle] = useState([userRecipe.title]);
 
     const handleSubmit = () => {
-        fetch('http://localhost:3000/recipe/', {
+        fetch(`${APIURL}/recipe/`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -23,7 +24,7 @@ const FavoritesView = (props, userRecipe) => {
     }
 
     const deleteRecipe = (id) => {
-        fetch(`http://localhost:3000/recipe/delete/${id}`, {
+        fetch(`${APIURL}/recipe/delete/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json",
@@ -35,7 +36,7 @@ const FavoritesView = (props, userRecipe) => {
     }
 
     const updateRecipe = (id) => {
-        fetch(`http://localhost:3000/recipe/update/${id}`, {
+        fetch(`${APIURL}/recipe/update/${id}`, {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json',
