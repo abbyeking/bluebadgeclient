@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Navbar.css';
-import styled from 'styled-components'
-import StyledButton from './Styles/Button'
+import StyledButton from './Styles/Button';
 
 import {
     Collapse,
@@ -23,7 +22,21 @@ const Sitebar = (props) => {
         setIsOpen(newIsOpen);
     }
 
-   
+// const ShowLogout = () => {
+
+//     return(sessionToken === localStorage.getItem('token')  
+//         ?(
+//           <>
+//           <br></br>
+//             <SearchView token={sessionToken} />
+//             <br></br>
+//             <FavoritesView token={sessionToken} />
+//           </>
+//         )         
+//         :<Auth updateToken={updateToken} />
+//       )
+//   }
+
 
     return (
         <div>
@@ -33,7 +46,9 @@ const Sitebar = (props) => {
                 <Collapse isOpen={isOpen} navbar >
                     <Nav className="ml-auto" navbar >
                         <NavItem>
-                            <StyledButton onClick={props.clearToken}>Logout</StyledButton>
+                            {(props.sessionToken !== ('')) ?
+                            <StyledButton onClick={props.clearToken}>Logout</StyledButton> :
+                            <span /> }
                         </NavItem>
            {/* <div>
                 {pages.map((page,p) =>

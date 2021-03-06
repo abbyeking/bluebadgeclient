@@ -4,8 +4,6 @@ import Sitebar from './components/Navbar';
 import './App.css';
 import SearchView from './components/SearchView';
 import FavoritesView from './components/FavoritesView';
-// import UpdateForm from './components/UpdateForm';
-
 
 function App() {
 
@@ -50,7 +48,7 @@ function App() {
   return (
     <div className="App">
       <br></br>
-      <Sitebar clearToken={clearToken} />
+      <Sitebar clearToken={clearToken} token={sessionToken} />
       {protectedViews()}
 
     </div>
