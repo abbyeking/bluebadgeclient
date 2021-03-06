@@ -5,14 +5,8 @@ html, body{
   background-color: #f6f4ec;
   color: #2C3B4B;
   font-family: 'Merriweather Sans', sans-serif !important;
-
-  /* font-family: 'Limelight', cursive, !important; */
-  /* color: greenyellow; */
 }
-/* #bootoveride{
-  font-family: 'Limelight', cursive, !important;
-  color: greenyellow;
-} */
+
 h1{
   font-family: 'Merriweather Sans', sans-serif !important; 
 }
