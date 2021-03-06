@@ -1,5 +1,7 @@
 import React, { useState} from 'react';
 import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
+import styled from 'styled-components';
+import StyledButton from '../components/Styles/Button'
 
 const Signup = (props) => {
   console.log(props);
@@ -50,7 +52,7 @@ let handleSubmit = (event) => {
           <Input required onChange={(e)=>setPassword(e.target.value)}name='password' value={password}/>
           <p style={{color:"red"}} > {(noPass) ? "Password must be between 4 and 13 characters" : ""}</p>
         </FormGroup>
-        <Button type='submit'>Signup</Button>
+        <StyledButton type='submit'>Signup</StyledButton>
       </Form>
     </div>
   );
