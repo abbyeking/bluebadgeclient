@@ -3,7 +3,7 @@ import './FavoritesView.css';
 import StyledButton from './Styles/Button'
 import StyledH1 from './Styles/StyledH1'
 import StyledOutterDiv from './Styles/StyledOutterDiv'
-import APIURL from './helpers/environment'
+import APIURL from '../helpers/environment'
 
 
 const FavoritesView = (props, userRecipe) => {

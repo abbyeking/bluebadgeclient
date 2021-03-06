@@ -3,7 +3,7 @@ import {Form, FormGroup, Label, Input, Button} from 'reactstrap';
 import '../index.css';
 import styled from 'styled-components'
 import StyledButton from '../components/Styles/Button'
-import APIURL from './helpers/environment'
+import APIURL from '../helpers/environment'
 
 
 const Login = (props) => {
