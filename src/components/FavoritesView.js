@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import Navbar from '../components/Navbar';
 import './FavoritesView.css';
-// import styled from 'styled-components'
 import StyledButton from './Styles/Button'
 import StyledH1 from './Styles/StyledH1'
 import StyledOutterDiv from './Styles/StyledOutterDiv'
@@ -21,7 +19,6 @@ const FavoritesView = (props, userRecipe) => {
         }).then((res) => res.json())
             .then((logData) => {
                 setFavorites(logData)
-                console.log(logData)
             })
     }
 
@@ -33,13 +30,11 @@ const FavoritesView = (props, userRecipe) => {
                 "Authorization": props.token
             },
         }).then(() => {
-            console.log("Deleted Successfully");
             handleSubmit();
         })
     }
 
     const updateRecipe = (id) => {
-        console.log(id)
         fetch(`http://localhost:3000/recipe/update/${id}`, {
             method: "PUT",
             headers: {
@@ -51,7 +46,6 @@ const FavoritesView = (props, userRecipe) => {
             })
         }).then(() => {
             handleSubmit();
-            console.log(title);
         })
     }
 
