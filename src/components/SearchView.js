@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react'
-// import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
-// import styled from 'styled-components'
 import StyledButton from './Styles/Button'
 import StyledH1 from './Styles/StyledH1'
 import StyledOutterDiv from './Styles/StyledOutterDiv'
@@ -8,8 +6,6 @@ import StyledOutterDiv from './Styles/StyledOutterDiv'
 
 const SearchView = (props) => {
     const [recipes, setRecipes] = useState([])
-    // const [title, setTitle] = useState([])
-    // const [rId, setrId] = useState([])
     const [userSearch, setUserSearch] = useState()
 
     const getRecipesByQuery = async (q) => {
@@ -24,11 +20,9 @@ const SearchView = (props) => {
     }
 
     useEffect(()=>{
-        // console.log(userSearch)
     },[userSearch])
 
     const sendRecipe = async (title, rId) => {
-        console.log(title,rId);
         fetch("http://localhost:3000/recipe/create", {
 
             method: "POST",
