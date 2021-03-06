@@ -1,4 +1,4 @@
-let APIURL = 'https://jg-yum.herokuapp.com/'
+let APIURL = ''
 
 switch (window.location.hostname) {
     case 'localhost':
