@@ -4,14 +4,20 @@ import StyledH1 from './Styles/StyledH1'
 import StyledOutterDiv from './Styles/StyledOutterDiv'
 import APIURL from '../helpers/environment'
 
+const baseUrl = 'https://api.spoonacular.com/recipes/complexSearch'
+const key = '6f3ea19c350c46fba6d62a182eb7770f'
 
 const SearchView = (props) => {
     const [recipes, setRecipes] = useState([])
     const [userSearch, setUserSearch] = useState()
 
     const getRecipesByQuery = async (q) => {
-        // const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=be7ffc7def9d4c6eb8c2150dae8dd91f3&query=${q}`
-        let response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=be7ffc7def9d4c6eb8c2150dae8dd91f3&query=${q}`)
+        // const baseUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=&query=${q}`
+        // const key = '6f3ea19c350c46fba6d62a182eb7770f'
+
+        let url = `${baseUrl}?api-key=${key}&query=${q}`
+
+        let response = await fetch(url)
         let dan = await response.json()
         return dan.results
     }
