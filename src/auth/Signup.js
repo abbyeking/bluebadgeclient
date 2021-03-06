@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import StyledButton from '../components/Styles/Button'
 
 const Signup = (props) => {
-  console.log(props);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [noPass, setNoPass] = useState(false);
@@ -13,7 +12,6 @@ let handleSubmit = (event) => {
   event.preventDefault();
   if(password.length > 4 && password.length < 14){
     setNoPass(false);
-    console.log(email, password);
     fetch('http://localhost:3000/user/signup',
       {
         method: 'POST',
@@ -23,15 +21,11 @@ let handleSubmit = (event) => {
     )
     .then(
       (response) => {
-        console.log(response);
         return response.json()
       })
     .then(
       (data) => {
-        console.log(data);
         props.updateToken(data.sessionToken)
-        // localStorage.setItem('token', newToken);
-        
       }
     )
   }else{
