@@ -35,11 +35,6 @@ const Sitebar = (props) => {
                         <NavItem>
                             <StyledButton onClick={props.clearToken}>Logout</StyledButton>
                         </NavItem>
-           {/* <div>
-                {pages.map((page,p) =>
-                    <Button key={p} onClick={()=>props.setComponent(page.component)} 
-                    className="">{page.title}</Button>)} 
-            </div> */}
                     </Nav>
                 </Collapse>
             </Navbar>
