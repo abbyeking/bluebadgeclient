@@ -73,7 +73,7 @@ const FavoritesView = (props, userRecipe) => {
 
                             <div>
                                 <CardTitle><h4 key={favorite.id}>{favorite.title}</h4></CardTitle>
-                                <CardImg width="50px" height="1000px" src={favorite.image} alt="Recipe Image" />
+                                <CardImg top height="50%" src={favorite.image} alt="Recipe Image" />
                                 <CardSubtitle tag="h6" className="mb-2 text-muted">Servings: {favorite.servings}</CardSubtitle>
                                 <CardSubtitle tag="h6" className="mb-2 text-muted">Ready in: {favorite.readyInMinutes}</CardSubtitle>
                                 <CardText>{favorite.sourceUrl}</CardText>
