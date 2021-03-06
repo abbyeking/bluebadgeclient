@@ -6,7 +6,6 @@ import StyledButton from '../components/Styles/Button'
 
 
 const Login = (props) => {
-  console.log(props)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [noEmail, setNoEmail] = useState(false);
@@ -25,13 +24,12 @@ const Login = (props) => {
       )
       .then(
         (response) => {
-          console.log(response)
           return response.json()
         })
       .then(
         (data) => {
           props.updateToken(data.sessionToken);
-          console.log(data.sessionToken)}
+          }
       )
       .catch((err) => console.log(err))
     }else{
