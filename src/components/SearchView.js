@@ -15,7 +15,7 @@ const SearchView = (props) => {
         // const baseUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=&query=${q}`
         // const key = '6f3ea19c350c46fba6d62a182eb7770f'
 
-        let url = `${baseUrl}?api-key=${key}&query=${q}`
+        let url = `${baseUrl}?apiKey=${key}&query=${q}`
 
         let response = await fetch(url)
         let dan = await response.json()
