@@ -10,8 +10,8 @@ const SearchView = (props) => {
     const [userSearch, setUserSearch] = useState()
 
     const getRecipesByQuery = async (q) => {
-        const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=be7ffc7def9d4c6eb8c2150dae8dd91f3&query=${q}`
-        let response = await fetch(url)
+        // const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=be7ffc7def9d4c6eb8c2150dae8dd91f3&query=${q}`
+        let response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=be7ffc7def9d4c6eb8c2150dae8dd91f3&query=${q}`)
         let dan = await response.json()
         return dan.results
     }
