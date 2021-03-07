@@ -77,8 +77,8 @@ const SearchView = (props) => {
             <div>{recipes?.map((rec) => {
                 return (
                     <div>
-                        <Card>
-                            <CardImg width="50px" height="1000px" src={rec.image} alt="Recipe Image" />
+                        <Card id="CardImage">
+                            <CardImg width="300" height="200" src={rec.image} alt="Recipe Image" />
                             <CardBody>
                                 <CardTitle><h4 key={rec.id}>{rec.title}</h4></CardTitle>
                                 {/* <CardSubtitle tag="h6" className="mb-2 text-muted">{full_info.servings}</CardSubtitle>
