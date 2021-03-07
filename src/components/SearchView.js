@@ -6,25 +6,27 @@ import StyledH1 from './Styles/StyledH1'
 import StyledOuterDiv from './Styles/StyledOuterDiv'
 import {
     Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button
+    CardTitle, CardSubtitle, Button, Row, Col
 } from 'reactstrap'
+import './Navbar.css'
+
+const baseUrl = 'https://api.spoonacular.com/recipes/complexSearch'
+const key = '6f3ea19c350c46fba6d62a182eb7770f'
 
 const SearchView = (props) => {
     const [recipes, setRecipes] = useState([])
-    // const [title, setTitle] = useState([])
-    // const [rId, setrId] = useState([])
     const [userSearch, setUserSearch] = useState()
 
     const getRecipesByQuery = async (q) => {
-        const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=2f00196142ab4db59cc5132da2a5c674&query=${q}`
+
+        let url = `${baseUrl}?apiKey=${key}&query=${q}`
+
         let response = await fetch(url)
         let dan = await response.json()
-        console.log(dan)
         return dan.results
     }
     const recipeSearch = async () => {
         let qResult = await getRecipesByQuery(userSearch)
-        //console.log(typeof qResult);
         setRecipes(qResult)
     }
     const recipeDetailFetch = async (rId) => {
@@ -77,23 +79,24 @@ const SearchView = (props) => {
             <div>{recipes?.map((rec) => {
                 return (
                     <div>
-                        <Card id="CardImage">
-                            <CardImg width="300" height="200" src={rec.image} alt="Recipe Image" />
-                            <CardBody>
-                                <CardTitle><h4 key={rec.id}>{rec.title}</h4></CardTitle>
-                                {/* <CardSubtitle tag="h6" className="mb-2 text-muted">{full_info.servings}</CardSubtitle>
-                                <CardSubtitle tag="h6" className="mb-2 text-muted">{full_info.readyInMinutes}</CardSubtitle>
-                                <CardText>{full_info.sourceUrl}</CardText> */}
 
-                                <StyledButton onClick={async (e) => {
-                                    e.preventDefault();
-                                    let full_info = await recipeDetailFetch(rec.id);
-                                    console.log(rec, full_info);
-                                    sendRecipe(rec.title, rec.id, rec.image, full_info.servings, full_info.readyInMinutes, full_info.sourceUrl)
-                                }}>Save Recipe</StyledButton>
+                        <Row className="justify-content-md-center">
+                            <Col xs={12} sm={4} md={4}>
+                                <Card>
+                                    <CardImg id="images" src={rec.image} alt="Recipe Image" />
+                                    <CardBody>
+                                        <CardTitle><h4 key={rec.id}>{rec.title}</h4></CardTitle>
+                                        <StyledButton onClick={async (e) => {
+                                            e.preventDefault();
+                                            let full_info = await recipeDetailFetch(rec.id);
+                                            console.log(rec, full_info);
+                                            sendRecipe(rec.title, rec.id, rec.image, full_info.servings, full_info.readyInMinutes, full_info.sourceUrl)
+                                        }}>Save Recipe</StyledButton>
+                                    </CardBody>
+                                </Card>
+                            </Col>
+                        </Row>
 
-                            </CardBody>
-                        </Card>
                     </div>
                 )
             })}</div>
