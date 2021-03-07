@@ -4,7 +4,7 @@ import './FavoritesView.css';
 // import styled from 'styled-components'
 import StyledButton from './Styles/Button'
 import StyledH1 from './Styles/StyledH1'
-import StyledOutterDiv from './Styles/StyledOutterDiv'
+import StyledOuterDiv from './Styles/StyledOuterDiv'
 import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button, Row, Col
@@ -61,6 +61,7 @@ const FavoritesView = (props, userRecipe) => {
 
 
     return (
+
         <StyledOutterDiv>
             <Row className="justify-content-md-center">
                 <Col xs={12} sm={4} md={4}>
@@ -78,10 +79,12 @@ const FavoritesView = (props, userRecipe) => {
                                                 <br />
                                                 <br />
 
+
                                                 <CardSubtitle tag="h6" className="mb-2 text-muted">Servings: {favorite.servings}</CardSubtitle>
                                                 <CardSubtitle tag="h6" className="mb-2 text-muted">Ready in: {favorite.readyInMinutes}</CardSubtitle>
                                                 <CardText>{favorite.sourceUrl}</CardText>
                                                 <br />
+
 
                                                 <StyledButton onClick={() => { deleteRecipe(favorite.id) }}>Delete</StyledButton>
                                                 <input onChange={(e) => setTitle(e.target.value)}></input><StyledButton onClick={() => { updateRecipe(favorite.id) }}>Update Title</StyledButton>
