@@ -62,7 +62,7 @@ const FavoritesView = (props, userRecipe) => {
 
     return (
 
-        <StyledOutterDiv>
+        <StyledOuterDiv>
             <Row className="justify-content-md-center">
                 <Col xs={12} sm={4} md={4}>
                     <StyledH1 className="favorites">Favorites</StyledH1>
@@ -102,7 +102,7 @@ const FavoritesView = (props, userRecipe) => {
                     }
                 </Col>
             </Row>
-        </StyledOutterDiv>
+        </StyledOuterDiv>
 
     )
 
