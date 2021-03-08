@@ -6,7 +6,7 @@ import StyledButton from './Styles/Button'
 import StyledH1 from './Styles/StyledH1'
 import StyledOuterDiv from './Styles/StyledOuterDiv'
 import {
-    Card, CardImg, CardText, CardBody,
+    Card, CardImg, CardText, CardLink, CardBody,
     CardTitle, CardSubtitle, Button, Row, Col
 } from 'reactstrap'
 
@@ -65,8 +65,10 @@ const FavoritesView = (props, userRecipe) => {
         <StyledOuterDiv>
             <Row className="justify-content-md-center">
                 <Col xs={12} sm={4} md={4}>
-                    <StyledH1 className="favorites">Favorites</StyledH1>
+                    <StyledH1 id="Favorites" className="favorites">Favorites</StyledH1>
                     <StyledButton onClick={() => handleSubmit()}>View Favorites</StyledButton>
+                    <br></br>
+                    <br></br>
                     {favorites?.length > 0 ?
                         <>
                             {favorites.map(favorite => {
@@ -81,12 +83,16 @@ const FavoritesView = (props, userRecipe) => {
 
 
                                                 <CardSubtitle tag="h6" className="mb-2 text-muted">Servings: {favorite.servings}</CardSubtitle>
-                                                <CardSubtitle tag="h6" className="mb-2 text-muted">Ready in: {favorite.readyInMinutes}</CardSubtitle>
-                                                <CardText>{favorite.sourceUrl}</CardText>
+                                                <CardSubtitle tag="h6" className="mb-2 text-muted">Ready in: {favorite.readyInMinutes} mins.</CardSubtitle>
+                                                {/* <CardText>{favorite.sourceUrl}</CardText> */}
+                                                <CardLink href={favorite.sourceUrl}>Link to recipe</CardLink>
+                                                <br />
                                                 <br />
 
 
                                                 <StyledButton onClick={() => { deleteRecipe(favorite.id) }}>Delete</StyledButton>
+                                                <br></br>
+                                                <br />
                                                 <input onChange={(e) => setTitle(e.target.value)}></input><StyledButton onClick={() => { updateRecipe(favorite.id) }}>Update Title</StyledButton>
 
                                                 <br />
@@ -100,6 +106,8 @@ const FavoritesView = (props, userRecipe) => {
                         </>
                         : null
                     }
+                    <br></br>
+                    <br></br>
                 </Col>
             </Row>
         </StyledOuterDiv>

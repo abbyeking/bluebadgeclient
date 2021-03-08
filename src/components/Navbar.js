@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Navbar.css';
 import StyledButton from './Styles/Button';
+import {BrowserRouter as Router, Link, Switch, Route} from 'react-router-dom';
 
 import {
     Collapse,
@@ -40,7 +41,14 @@ const Sitebar = (props) => {
 
     return (
         <div>
-            <Navbar color="faded" light expand="md" id="fullNav">
+            {/* <Router>
+                <Switch>
+                    <Route exact path="/favorites">
+                        <FavoritesView/>
+                    </Route>
+                </Switch>
+            </Router> */}
+            <Navbar color="faded" sticky="top" light expand="md" id="fullNav">
                 <NavbarBrand href="/">Welcome to Yum!</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar >
@@ -50,6 +58,11 @@ const Sitebar = (props) => {
                             <StyledButton onClick={props.clearToken}>Logout</StyledButton> :
                             <span /> }
                         </NavItem>
+                        {/* <Link to="/favorites">
+                        <NavItem>
+                            <StyledButton>Favorites</StyledButton>
+                        </NavItem>
+                        </Link> */}
            {/* <div>
                 {pages.map((page,p) =>
                     <Button key={p} onClick={()=>props.setComponent(page.component)} 

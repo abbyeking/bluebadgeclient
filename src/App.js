@@ -35,9 +35,7 @@ function App() {
     return(sessionToken === localStorage.getItem('token')  
         ?(
           <>
-          <br></br>
             <SearchView token={sessionToken} />
-            <br></br>
             <FavoritesView token={sessionToken} />
           </>
         )         

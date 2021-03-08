@@ -31,7 +31,7 @@ const SearchView = (props) => {
     }
     const recipeDetailFetch = async (rId) => {
 
-        let res = await fetch(`https://api.spoonacular.com/recipes/${rId}/information?apiKey=2f00196142ab4db59cc5132da2a5c674`, {
+        let res = await fetch(`https://api.spoonacular.com/recipes/${rId}/information?apiKey=6f3ea19c350c46fba6d62a182eb7770f`, {
             headers: new Headers({
                 'Content-Type': "application/json"
             })
@@ -71,9 +71,10 @@ const SearchView = (props) => {
     return (
         <StyledOuterDiv>
             <StyledH1>Search for a Recipe</StyledH1>
-            <h3>Lookup by ingredients and diet: <input onChange={(e) => setUserSearch(e.target.value)}></input></h3>
+            <h3>Look up by ingredients and diet: <input onChange={(e) => setUserSearch(e.target.value)}></input></h3>
             <StyledButton onClick={() => recipeSearch()}>Submit</StyledButton>
             <br></br>
+            <br />
 
 
             <div>{recipes?.map((rec) => {
@@ -94,6 +95,7 @@ const SearchView = (props) => {
                                         }}>Save Recipe</StyledButton>
                                     </CardBody>
                                 </Card>
+                                <br></br>
                             </Col>
                         </Row>
 
