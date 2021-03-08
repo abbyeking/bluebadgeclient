@@ -4,6 +4,7 @@ import Sitebar from './components/Navbar';
 import './App.css';
 import SearchView from './components/SearchView';
 import FavoritesView from './components/FavoritesView';
+import SwitchController from './components/Layout/SwitchController';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
           <>
             <SearchView token={sessionToken} />
             <FavoritesView token={sessionToken} />
+            {/* <SwitchController token={sessionToken}/> */}
           </>
         )         
         :<Auth updateToken={updateToken} />
