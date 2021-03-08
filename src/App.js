@@ -4,7 +4,15 @@ import Sitebar from './components/Navbar';
 import './App.css';
 import SearchView from './components/SearchView';
 import FavoritesView from './components/FavoritesView';
-import SwitchController from './components/Layout/SwitchController';
+import {
+  BrowserRouter as Router,
+  Link,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+
+
 
 function App() {
 
@@ -29,30 +37,56 @@ function App() {
     setSessionToken('');
   }
 
-  const protectedViews = () => {
-    console.log(currentView);
-    // under what circumstances would this be false? udateToken both sets the same token in the state variable and the
-    // local storage. works just as well to check if a token exists without comparing the state to the local storage
-    return(sessionToken === localStorage.getItem('token')  
-        ?(
-          <>
-            <SearchView token={sessionToken} />
-            <FavoritesView token={sessionToken} />
-            {/* <SwitchController token={sessionToken}/> */}
-          </>
-        )         
-        :<Auth updateToken={updateToken} />
-      )
-  }
-
+  // const protectedViews = () => {
+  //   console.log(currentView);
+  //   // under what circumstances would this be false? udateToken both sets the same token in the state variable and the
+  //   // local storage. works just as well to check if a token exists without comparing the state to the local storage
+  //   return(sessionToken === localStorage.getItem('token')  
+  //       ?(
+  //         <>
+  //           <SearchView token={sessionToken} />
+  //           <FavoritesView token={sessionToken} />
+  //           {/* <SwitchController token={sessionToken}/> */}
+  //         </>
+  //       )         
+  //       :<Auth updateToken={updateToken} />
+  //     )
+  // }
   return (
     <div className="App">
       <br></br>
-      <Sitebar clearToken={clearToken} token={sessionToken} />
-      {protectedViews()}
-
+      <Router>
+        <Sitebar clearToken={clearToken} token={sessionToken} />
+        <Switch>
+          <Route exact path="/">
+            {sessionToken === localStorage.getItem("token") ? (
+              <Redirect to="/search" />
+            ) : (
+              <Auth updateToken={updateToken} />
+            )}
+          </Route>
+          {/* {protectedViews()} */}
+          <Route exact path="/favorites">
+            <FavoritesView token={sessionToken} />
+          </Route>
+          <Route exact path="/search">
+            <SearchView token={sessionToken} />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
+
+
+  // return (
+  //   <div className="App">
+  //     <br></br>
+  //     <Sitebar clearToken={clearToken} token={sessionToken} />
+  //     {protectedViews()}
+
+  //   </div>
+  // );
+// }
 
 export default App;

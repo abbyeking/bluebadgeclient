@@ -6,7 +6,7 @@ const StyledButton = styled.button`
     border-radius: 0.4em;
     height: 35px;
     width: 130px;
-    // margin-left: 15px;
+    margin: 0 .5rem 0 .5rem;
     display: inline-block;
     color: white;
     background-color: #5A6D82;

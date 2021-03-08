@@ -74,37 +74,37 @@ const FavoritesView = (props, userRecipe) => {
                             {favorites.map(favorite => {
                                 return (
                                     <div>
-                                    <br></br>
-                                    <br></br>
-                                    <Card>
-                                        <CardBody>
-                                            <div>
-                                                <CardTitle><h4 key={favorite.id}>{favorite.title}</h4></CardTitle>
-                                                <CardImg id="images" src={favorite.image} alt="Recipe Image" />
-                                                <br />
-                                                <br />
+                                        <br></br>
+                                        <br></br>
+                                        <Card>
+                                            <CardBody>
+                                                <div>
+                                                    <CardTitle><h4 key={favorite.id}>{favorite.title}</h4></CardTitle>
+                                                    <CardImg id="images" src={favorite.image} alt="Recipe Image" />
+                                                    <br />
+                                                    <br />
 
 
-                                                <CardSubtitle tag="h6" className="mb-2 text-muted">Servings: {favorite.servings}</CardSubtitle>
-                                                <CardSubtitle tag="h6" className="mb-2 text-muted">Ready in: {favorite.readyInMinutes} mins.</CardSubtitle>
-                                                {/* <CardText>{favorite.sourceUrl}</CardText> */}
-                                                <CardLink href={favorite.sourceUrl}>Link to recipe</CardLink>
-                                                <br />
-                                                <br />
+                                                    <CardSubtitle tag="h6" className="mb-2 text-muted">Servings: {favorite.servings}</CardSubtitle>
+                                                    <CardSubtitle tag="h6" className="mb-2 text-muted">Ready in: {favorite.readyInMinutes} mins.</CardSubtitle>
+                                                    {/* <CardText>{favorite.sourceUrl}</CardText> */}
+                                                    <CardLink id="red" href={favorite.sourceUrl} target="_blank" >Link to recipe</CardLink>
+                                                    <br />
+                                                    <br />
 
 
-                                                <StyledButton onClick={() => { deleteRecipe(favorite.id) }}>Delete</StyledButton>
-                                                <br></br>
-                                                <br />
-                                                <input style={{margin: "0 0 .5rem"}} onChange={(e) => setTitle(e.target.value)}></input>
-                                                <StyledButton onClick={() => { updateRecipe(favorite.id) }}>Update Title</StyledButton>
+                                                    <StyledButton onClick={() => { deleteRecipe(favorite.id) }}>Delete</StyledButton>
+                                                    <br></br>
+                                                    <br />
+                                                    <input style={{ margin: "0 0 .5rem" }} onChange={(e) => setTitle(e.target.value)}></input>
+                                                    <StyledButton onClick={() => { updateRecipe(favorite.id) }}>Update Title</StyledButton>
 
-                                                <br />
-                                                <br />
-                                        
-                                            </div>
-                                        </CardBody>
-                                    </Card>
+                                                    <br />
+                                                    <br />
+
+                                                </div>
+                                            </CardBody>
+                                        </Card>
                                     </div>
                                 )
                             })}

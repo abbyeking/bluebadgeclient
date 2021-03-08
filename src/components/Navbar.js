@@ -41,9 +41,7 @@ const Sitebar = (props) => {
 
     const navbarStyles = {
         position: 'fixed',
-        // height: '60px',
         width: '100%',
-        // backgroundColor: 'grey',
         textAlign: 'center',
         transition: 'top 0.6s',
         zIndex: '100'
@@ -53,16 +51,28 @@ const Sitebar = (props) => {
         <div style={{ ...navbarStyles, top: visible ? '0' : '-60px' }}>
 
             <Navbar color="faded" sticky="top" light expand="md" id="fullNav">
-                <NavbarBrand href="/">Welcome to Yum!</NavbarBrand>
+                <NavbarBrand id="yum" href="/">Welcome to Yum!</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar >
                     <Nav className="ml-auto" navbar >
-                        {/* <NavItem>
-                            <StyledButton><Link to="/favorites">Favorites</Link></StyledButton>
-                        </NavItem> */}
+                        <NavItem>
+                            <StyledButton>
+                                <Link style={{ color: "#FFFFFF" }} to="/favorites">Favorites</Link>
+                            </StyledButton>
+                        </NavItem>
+                        <NavItem>
+                            <StyledButton>
+                                <Link style={{ color: "#FFFFFF" }} to="/search">Search</Link>
+                            </StyledButton>
+                        </NavItem>
                         <NavItem>
                             {(props.sessionToken !== ('')) ?
-                                <StyledButton onClick={props.clearToken}>Logout</StyledButton> :
+                                <StyledButton onClick={props.clearToken}>
+                                    <Link style={{ color: "#FFFFFF" }} to="/" >
+                                        Logout
+                                </Link>
+                                </StyledButton>
+                                :
                                 <span />}
                         </NavItem>
                     </Nav>
