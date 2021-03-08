@@ -73,6 +73,9 @@ const FavoritesView = (props, userRecipe) => {
                         <>
                             {favorites.map(favorite => {
                                 return (
+                                    <div>
+                                    <br></br>
+                                    <br></br>
                                     <Card>
                                         <CardBody>
                                             <div>
@@ -93,21 +96,21 @@ const FavoritesView = (props, userRecipe) => {
                                                 <StyledButton onClick={() => { deleteRecipe(favorite.id) }}>Delete</StyledButton>
                                                 <br></br>
                                                 <br />
-                                                <input onChange={(e) => setTitle(e.target.value)}></input><StyledButton onClick={() => { updateRecipe(favorite.id) }}>Update Title</StyledButton>
+                                                <input style={{margin: "0 0 .5rem"}} onChange={(e) => setTitle(e.target.value)}></input>
+                                                <StyledButton onClick={() => { updateRecipe(favorite.id) }}>Update Title</StyledButton>
 
                                                 <br />
                                                 <br />
-                                                <br />
+                                        
                                             </div>
                                         </CardBody>
                                     </Card>
+                                    </div>
                                 )
                             })}
                         </>
                         : null
                     }
-                    <br></br>
-                    <br></br>
                 </Col>
             </Row>
         </StyledOuterDiv>

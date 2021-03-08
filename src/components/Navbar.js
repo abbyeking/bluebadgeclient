@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import StyledButton from './Styles/Button';
-import {BrowserRouter as Router, Link, Switch, Route} from 'react-router-dom';
+import { debounce } from '../helpers/debounce';
+import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 
 import {
     Collapse,
@@ -22,25 +23,55 @@ const Sitebar = (props) => {
         let newIsOpen = !isOpen;
         setIsOpen(newIsOpen);
     }
+    const [prevScrollPos, setPrevScrollPos] = useState(0);
+    const [visible, setVisible] = useState(true);
 
-// const ShowLogout = () => {
+    const handleScroll = debounce(() => {
+        const currentScrollPos = window.pageYOffset;
 
-//     return(sessionToken === localStorage.getItem('token')  
-//         ?(
-//           <>
-//           <br></br>
-//             <SearchView token={sessionToken} />
-//             <br></br>
-//             <FavoritesView token={sessionToken} />
-//           </>
-//         )         
-//         :<Auth updateToken={updateToken} />
-//       )
-//   }
+        setVisible((prevScrollPos > currentScrollPos && prevScrollPos - currentScrollPos > 50) || currentScrollPos < 10);
+
+        setPrevScrollPos(currentScrollPos);
+    }, 100);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+
+    }, [prevScrollPos, visible, handleScroll]);
+
+    const navbarStyles = {
+        position: 'fixed',
+        // height: '60px',
+        width: '100%',
+        // backgroundColor: 'grey',
+        textAlign: 'center',
+        transition: 'top 0.6s',
+        zIndex: '100'
+    }
+
+
+
+
+
+    // const ShowLogout = () => {
+
+    //     return(sessionToken === localStorage.getItem('token')  
+    //         ?(
+    //           <>
+    //           <br></br>
+    //             <SearchView token={sessionToken} />
+    //             <br></br>
+    //             <FavoritesView token={sessionToken} />
+    //           </>
+    //         )         
+    //         :<Auth updateToken={updateToken} />
+    //       )
+    //   }
 
 
     return (
-        <div>
+        <div style={{ ...navbarStyles, top: visible ? '0' : '-60px' }}>
             {/* <Router>
                 <Switch>
                     <Route exact path="/favorites">
@@ -55,15 +86,15 @@ const Sitebar = (props) => {
                     <Nav className="ml-auto" navbar >
                         <NavItem>
                             {(props.sessionToken !== ('')) ?
-                            <StyledButton onClick={props.clearToken}>Logout</StyledButton> :
-                            <span /> }
+                                <StyledButton onClick={props.clearToken}>Logout</StyledButton> :
+                                <span />}
                         </NavItem>
                         {/* <Link to="/favorites">
                         <NavItem>
                             <StyledButton>Favorites</StyledButton>
                         </NavItem>
                         </Link> */}
-           {/* <div>
+                        {/* <div>
                 {pages.map((page,p) =>
                     <Button key={p} onClick={()=>props.setComponent(page.component)} 
                     className="">{page.title}</Button>)} 
