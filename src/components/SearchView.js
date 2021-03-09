@@ -66,7 +66,7 @@ const SearchView = (props) => {
                 sourceUrl: sourceUrl
             })
         })
-            .then(res => { console.log(res) })
+            .then(res => { res.json()})
             .catch(err => console.log(err))
     }
 

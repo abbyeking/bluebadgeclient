@@ -103,7 +103,7 @@ const Signup = (props) => {
         <FormGroup>
           <Label htmlFor="email">Email</Label>
           <Input
-            required
+            required 
             onChange={(e) => setEmail(e.target.value)}
             email="email"
             value={email}
