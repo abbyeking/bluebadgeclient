@@ -22,7 +22,7 @@ const Signup = (props) => {
       if (password.length > 4 && password.length < 14) {
         setNoPass(false);
         console.log(email, password);
-        fetch('http://localhost:3000/user/signup',
+        fetch(`${APIURL}/user/signup`,
           {
             method: 'POST',
             body: JSON.stringify({ user: { email: email, password: password } }),
@@ -48,30 +48,6 @@ const Signup = (props) => {
     }
   }
 
-// let handleSubmit = (event) => {
-//   event.preventDefault();
-//   if(password.length > 4 && password.length < 14){
-//     setNoPass(false);
-//     fetch(`${APIURL}/user/signup`,
-//       {
-//         method: 'POST',
-//         body: JSON.stringify({user: {email: email, password: password}}),
-//         headers: new Headers({'Content-Type': 'application/json'})
-//       }
-//     )
-//     .then(
-//       (response) => {
-//         return response.json()
-//       })
-//     .then(
-//       (data) => {
-//         props.updateToken(data.sessionToken)
-//       }
-//     )
-//   }else{
-//     setNoPass(true);
-//   } 
-// }
 
 
   return (

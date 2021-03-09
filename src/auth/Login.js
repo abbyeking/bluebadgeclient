@@ -14,7 +14,7 @@ const Login = (props) => {
     event.preventDefault();
     if (email) {
 
-      fetch('http://localhost:3000/user/login',
+      fetch(`${APIURL}/user/login`,
         {
           method: 'POST',
           body: JSON.stringify({ user: { email: email, password: password } }),

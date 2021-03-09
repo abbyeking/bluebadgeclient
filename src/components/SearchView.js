@@ -7,6 +7,7 @@ import {
     CardTitle, CardSubtitle, Button, Row, Col
 } from 'reactstrap'
 import './Navbar.css'
+import APIURL from '../helpers/environment'
 
 const baseUrl = 'https://api.spoonacular.com/recipes/complexSearch'
 const key = '6f3ea19c350c46fba6d62a182eb7770f'
@@ -49,7 +50,7 @@ const SearchView = (props) => {
         console.log(title, rId, image, servings, readyInMinutes, sourceUrl);
 
   
-        fetch("http://localhost:3000/recipe/create", {
+        fetch(`${APIURL}/recipe/create`, {
 
             method: "POST",
             headers: {
