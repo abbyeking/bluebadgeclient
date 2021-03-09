@@ -1,15 +1,24 @@
 import { useState, useEffect } from 'react'
 import StyledButton from './Styles/Button'
 import StyledH1 from './Styles/StyledH1'
-import StyledOutterDiv from './Styles/StyledOutterDiv'
+import StyledOuterDiv from './Styles/StyledOuterDiv'
+import {
+    Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, Button, Row, Col
+} from 'reactstrap'
+import './Navbar.css'
 
+const baseUrl = 'https://api.spoonacular.com/recipes/complexSearch'
+const key = '6f3ea19c350c46fba6d62a182eb7770f'
 
 const SearchView = (props) => {
     const [recipes, setRecipes] = useState([])
     const [userSearch, setUserSearch] = useState()
 
     const getRecipesByQuery = async (q) => {
-        const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=d0ef56ca93554a3ba80bc1b25e91edc3&query=${q}`
+
+        let url = `${baseUrl}?apiKey=${key}&query=${q}`
+
         let response = await fetch(url)
         let dan = await response.json()
         return dan.results
@@ -18,11 +27,28 @@ const SearchView = (props) => {
         let qResult = await getRecipesByQuery(userSearch)
         setRecipes(qResult)
     }
+    const recipeDetailFetch = async (rId) => {
 
-    useEffect(()=>{
-    },[userSearch])
 
-    const sendRecipe = async (title, rId) => {
+        let res = await fetch(`https://api.spoonacular.com/recipes/${rId}/information?apiKey=6f3ea19c350c46fba6d62a182eb7770f`, {
+            headers: new Headers({
+                'Content-Type': "application/json"
+            })
+        })
+
+        let json = await res.json()
+
+        return json
+    }
+
+
+    useEffect(() => {
+    }, [userSearch])
+
+    const sendRecipe = async (title, rId, image, servings, readyInMinutes, sourceUrl) => {
+        console.log(title, rId, image, servings, readyInMinutes, sourceUrl);
+
+  
         fetch("http://localhost:3000/recipe/create", {
 
             method: "POST",
@@ -30,10 +56,13 @@ const SearchView = (props) => {
                 'Authorization': props.token,
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ 
-                    title: title,
-                    rId: rId
-                
+            body: JSON.stringify({
+                title: title,
+                rId: rId,
+                image: image,
+                servings: servings,
+                readyInMinutes: readyInMinutes,
+                sourceUrl: sourceUrl
             })
         })
             .then(res => { console.log(res) })
@@ -41,26 +70,43 @@ const SearchView = (props) => {
     }
 
     return (
-        <StyledOutterDiv>
+        <StyledOuterDiv>
             <StyledH1>Search for a Recipe</StyledH1>
-            <h3>Lookup by ingredients and diet: <input onChange={(e) => setUserSearch(e.target.value)}></input></h3>
-            <StyledButton onClick={recipeSearch}>Submit</StyledButton>
+            <h3>Look up by ingredients and diet: <input onChange={(e) => setUserSearch(e.target.value)}></input></h3>
+            <StyledButton onClick={() => recipeSearch()}>Submit</StyledButton>
             <br></br>
+            <br />
 
 
-            {recipes?.map((rec) => {
+            <div>{recipes?.map((rec) => {
                 return (
                     <div>
-                        <h4 key={rec.id}>{rec.title} <i>{rec.maxReadyTime}</i></h4>
-                        <StyledButton onClick={(e) => {
-                            e.preventDefault();
-                            sendRecipe(rec.title, rec.id)
-                        }}>Save Recipe</StyledButton>
+
+                        <Row className="justify-content-md-center">
+                            <Col xs={12} sm={4} md={4}>
+                                <Card>
+                                    <CardImg id="images" src={rec.image} alt="Recipe Image" />
+                                    <CardBody>
+                                        <CardTitle><h4 key={rec.id}>{rec.title}</h4></CardTitle>
+                                        <StyledButton onClick={async (e) => {
+                                            e.preventDefault();
+                                            let full_info = await recipeDetailFetch(rec.id);
+                                            console.log(rec, full_info);
+                                            sendRecipe(rec.title, rec.id, rec.image, full_info.servings, full_info.readyInMinutes, full_info.sourceUrl)
+                                        }}>Save Recipe</StyledButton>
+                                    </CardBody>
+                                </Card>
+                                <br></br>
+                            </Col>
+                        </Row>
+
                     </div>
                 )
-            })}
+            })}</div>
 
-        </StyledOutterDiv>
+        </StyledOuterDiv>
     )
 }
 export default SearchView;
+
+
