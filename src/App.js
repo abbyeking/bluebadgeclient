@@ -31,11 +31,10 @@ function App() {
     localStorage.clear();
     setSessionToken('');
   }
-<<<<<<< HEAD
   const protectedViews = () => {
-    // under what circumstances would this be false? updateToken both sets the same token in the state variable and the
+    
     console.log(currentView);
-    // under what circumstances would this be false? udateToken both sets the same token in the state variable and the
+    // under what circumstances would this be false? updateToken both sets the same token in the state variable and the
     // local storage. works just as well to check if a token exists without comparing the state to the local storage
     return(sessionToken === localStorage.getItem('token')  
         ?(
@@ -49,7 +48,6 @@ function App() {
         :<Auth updateToken={updateToken} />
       )
   }
-=======
 
 
 //   const protectedViews = () => {
@@ -66,7 +64,6 @@ function App() {
 //       )
 //   }
 
->>>>>>> 0707beaf4daeb833bd790bae8a065e3fdc86c587
   return (
     <div className="App">
       <br></br>
@@ -92,9 +89,6 @@ function App() {
     </div>
   );
 }
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 0707beaf4daeb833bd790bae8a065e3fdc86c587
 export default App;
