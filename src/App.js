@@ -79,14 +79,4 @@ function App() {
 }
 
 
-  // return (
-  //   <div className="App">
-  //     <br></br>
-  //     <Sitebar clearToken={clearToken} token={sessionToken} />
-  //     {protectedViews()}
-
-  //   </div>
-  // );
-// }
-
 export default App;
