@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react'
-// import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
-// import styled from 'styled-components'
 import StyledButton from './Styles/Button'
 import StyledH1 from './Styles/StyledH1'
 import StyledOuterDiv from './Styles/StyledOuterDiv'
@@ -31,6 +29,7 @@ const SearchView = (props) => {
     }
     const recipeDetailFetch = async (rId) => {
 
+
         let res = await fetch(`https://api.spoonacular.com/recipes/${rId}/information?apiKey=6f3ea19c350c46fba6d62a182eb7770f`, {
             headers: new Headers({
                 'Content-Type': "application/json"
@@ -48,6 +47,8 @@ const SearchView = (props) => {
 
     const sendRecipe = async (title, rId, image, servings, readyInMinutes, sourceUrl) => {
         console.log(title, rId, image, servings, readyInMinutes, sourceUrl);
+
+  
         fetch("http://localhost:3000/recipe/create", {
 
             method: "POST",

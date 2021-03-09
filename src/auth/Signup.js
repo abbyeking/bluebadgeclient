@@ -4,15 +4,14 @@ import styled from 'styled-components';
 import StyledButton from '../components/Styles/Button'
 
 const Signup = (props) => {
-  // console.log(props);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [noPass, setNoPass] = useState(false);
   const [wrongEmail, setWrongEmail] = useState(false);
 
+
   let handleSubmit = (event) => {
     event.preventDefault();
-    // let wrongEmail = false
     let R = new RegExp(/[^@]+@[^@]+\.[^@]+/g);
     if (!R.test(email)) {
       setWrongEmail(true)
@@ -48,6 +47,32 @@ const Signup = (props) => {
     }
   }
 
+let handleSubmit = (event) => {
+  event.preventDefault();
+  if(password.length > 4 && password.length < 14){
+    setNoPass(false);
+    fetch('http://localhost:3000/user/signup',
+      {
+        method: 'POST',
+        body: JSON.stringify({user: {email: email, password: password}}),
+        headers: new Headers({'Content-Type': 'application/json'})
+      }
+    )
+    .then(
+      (response) => {
+        return response.json()
+      })
+    .then(
+      (data) => {
+        props.updateToken(data.sessionToken)
+      }
+    )
+  }else{
+    setNoPass(true);
+  } 
+}
+
+
   return (
     <div>
       <h1>Signup</h1>
@@ -70,29 +95,3 @@ const Signup = (props) => {
 
 export default Signup;
 
-// const emailRegex = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
-
-// function isEmailValid(email) {
-//     if (!email)
-//         return false;
-
-//     if(email.length>254)
-//         return false;
-
-//     let valid = emailRegex.test(email);
-//     if(!valid)
-//         return false;
-
-//     // Further checking of some things regex can't handle
-//     let parts = email.split("@");
-//     if(parts[0].length>64)
-//         return false;
-
-//     let domainParts = parts[1].split(".");
-//     if(domainParts.some(function(part) { return part.length>63; }))
-//         return false;
-
-//     return true;
-// }
-
-//source:https://www.codegrepper.com/code-examples/javascript/how+to+validate+email+in+node+js

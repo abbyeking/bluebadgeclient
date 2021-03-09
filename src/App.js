@@ -12,8 +12,6 @@ import {
   Redirect,
 } from "react-router-dom";
 
-
-
 function App() {
 
   const [sessionToken, setSessionToken] = useState('');
@@ -28,8 +26,7 @@ function App() {
 
   const updateToken = (newToken) => {
     localStorage.setItem('token', newToken);
-    setSessionToken(newToken);
-    console.log(sessionToken); 
+    setSessionToken(newToken); 
   };
 
   const clearToken = () => {
@@ -37,21 +34,21 @@ function App() {
     setSessionToken('');
   }
 
-  // const protectedViews = () => {
-  //   console.log(currentView);
-  //   // under what circumstances would this be false? udateToken both sets the same token in the state variable and the
-  //   // local storage. works just as well to check if a token exists without comparing the state to the local storage
-  //   return(sessionToken === localStorage.getItem('token')  
-  //       ?(
-  //         <>
-  //           <SearchView token={sessionToken} />
-  //           <FavoritesView token={sessionToken} />
-  //           {/* <SwitchController token={sessionToken}/> */}
-  //         </>
-  //       )         
-  //       :<Auth updateToken={updateToken} />
-  //     )
-  // }
+
+//   const protectedViews = () => {
+//     return(sessionToken === localStorage.getItem('token')  
+//         ?(
+//           <>
+//           <br></br>
+//             <SearchView token={sessionToken} />
+//             <br></br>
+//             <FavoritesView token={sessionToken} />
+//           </>
+//         )         
+//         :<Auth updateToken={updateToken} />
+//       )
+//   }
+
   return (
     <div className="App">
       <br></br>
@@ -65,7 +62,7 @@ function App() {
               <Auth updateToken={updateToken} />
             )}
           </Route>
-          {/* {protectedViews()} */}
+          
           <Route exact path="/favorites">
             <FavoritesView token={sessionToken} />
           </Route>
@@ -78,15 +75,5 @@ function App() {
   );
 }
 
-
-  // return (
-  //   <div className="App">
-  //     <br></br>
-  //     <Sitebar clearToken={clearToken} token={sessionToken} />
-  //     {protectedViews()}
-
-  //   </div>
-  // );
-// }
 
 export default App;
