@@ -6,6 +6,7 @@
     background-color: #9CB7C6;
 }
 
+
 #images {
     width: 100%;
 }
@@ -15,7 +16,18 @@
     flex-direction: row;
 }
 
+NavBar{
+    z-index: 100;
+}
 
+#foodbackground{
+    background-image: url('../assets/fruit-192753_1920.jpg');
+    width: 100vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
-
+#yum{
+    font-size: 1.8rem;
+}
 

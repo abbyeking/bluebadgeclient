@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react'
-// import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
-// import styled from 'styled-components'
 import StyledButton from './Styles/Button'
 import StyledH1 from './Styles/StyledH1'
-import StyledOutterDiv from './Styles/StyledOutterDiv'
+import StyledOuterDiv from './Styles/StyledOuterDiv'
 import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button, Row, Col
@@ -31,7 +29,8 @@ const SearchView = (props) => {
     }
     const recipeDetailFetch = async (rId) => {
 
-        let res = await fetch(`https://api.spoonacular.com/recipes/${rId}/information?apiKey=2f00196142ab4db59cc5132da2a5c674`, {
+
+        let res = await fetch(`https://api.spoonacular.com/recipes/${rId}/information?apiKey=6f3ea19c350c46fba6d62a182eb7770f`, {
             headers: new Headers({
                 'Content-Type': "application/json"
             })
@@ -48,6 +47,8 @@ const SearchView = (props) => {
 
     const sendRecipe = async (title, rId, image, servings, readyInMinutes, sourceUrl) => {
         console.log(title, rId, image, servings, readyInMinutes, sourceUrl);
+
+  
         fetch("http://localhost:3000/recipe/create", {
 
             method: "POST",
@@ -69,16 +70,18 @@ const SearchView = (props) => {
     }
 
     return (
-        <StyledOutterDiv>
+        <StyledOuterDiv>
             <StyledH1>Search for a Recipe</StyledH1>
-            <h3>Lookup by ingredients and diet: <input onChange={(e) => setUserSearch(e.target.value)}></input></h3>
+            <h3>Look up by ingredients and diet: <input onChange={(e) => setUserSearch(e.target.value)}></input></h3>
             <StyledButton onClick={() => recipeSearch()}>Submit</StyledButton>
             <br></br>
+            <br />
 
 
             <div>{recipes?.map((rec) => {
                 return (
                     <div>
+
                         <Row className="justify-content-md-center">
                             <Col xs={12} sm={4} md={4}>
                                 <Card>
@@ -93,13 +96,15 @@ const SearchView = (props) => {
                                         }}>Save Recipe</StyledButton>
                                     </CardBody>
                                 </Card>
+                                <br></br>
                             </Col>
                         </Row>
+
                     </div>
                 )
             })}</div>
 
-        </StyledOutterDiv>
+        </StyledOuterDiv>
     )
 }
 export default SearchView;

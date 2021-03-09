@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import StyledButton from './Styles/Button';
+import { debounce } from '../helpers/debounce';
+import { Link } from 'react-router-dom';
 
 import {
     Collapse,
@@ -9,7 +11,6 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    Button,
 } from 'reactstrap';
 
 import SearchView from './SearchView';
@@ -21,46 +22,64 @@ const Sitebar = (props) => {
         let newIsOpen = !isOpen;
         setIsOpen(newIsOpen);
     }
+    const [prevScrollPos, setPrevScrollPos] = useState(0);
+    const [visible, setVisible] = useState(true);
 
-// const ShowLogout = () => {
+    const handleScroll = debounce(() => {
+        const currentScrollPos = window.pageYOffset;
 
-//     return(sessionToken === localStorage.getItem('token')  
-//         ?(
-//           <>
-//           <br></br>
-//             <SearchView token={sessionToken} />
-//             <br></br>
-//             <FavoritesView token={sessionToken} />
-//           </>
-//         )         
-//         :<Auth updateToken={updateToken} />
-//       )
-//   }
+        setVisible((prevScrollPos > currentScrollPos && prevScrollPos - currentScrollPos > 50) || currentScrollPos < 10);
 
+        setPrevScrollPos(currentScrollPos);
+    }, 100);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+
+    }, [prevScrollPos, visible, handleScroll]);
+
+    const navbarStyles = {
+        position: 'fixed',
+        width: '100%',
+        textAlign: 'center',
+        transition: 'top 0.6s',
+        zIndex: '100'
+    }
 
     return (
-        <div>
-            <Navbar color="faded" light expand="md" id="fullNav">
-                <NavbarBrand href="/">Welcome to Yum!</NavbarBrand>
+        <div style={{ ...navbarStyles, top: visible ? '0' : '-60px' }}>
+
+            <Navbar color="faded" sticky="top" light expand="md" id="fullNav">
+                <NavbarBrand id="yum" href="/">Welcome to Yum!</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar >
                     <Nav className="ml-auto" navbar >
                         <NavItem>
-                            {(props.sessionToken !== ('')) ?
-                            <StyledButton onClick={props.clearToken}>Logout</StyledButton> :
-                            <span /> }
+                            <StyledButton>
+                                <Link style={{ color: "#FFFFFF" }} to="/favorites">Favorites</Link>
+                            </StyledButton>
                         </NavItem>
-           {/* <div>
-                {pages.map((page,p) =>
-                    <Button key={p} onClick={()=>props.setComponent(page.component)} 
-                    className="">{page.title}</Button>)} 
-            </div> */}
+                        <NavItem>
+                            <StyledButton>
+                                <Link style={{ color: "#FFFFFF" }} to="/search">Search</Link>
+                            </StyledButton>
+                        </NavItem>
+                        <NavItem>
+                            {(props.sessionToken !== ('')) ?
+                                <StyledButton onClick={props.clearToken}>
+                                    <Link style={{ color: "#FFFFFF" }} to="/" >
+                                        Logout
+                                </Link>
+                                </StyledButton>
+                                :
+                                <span />}
+                        </NavItem>
                     </Nav>
                 </Collapse>
             </Navbar>
         </div>
     )
-
 }
 
 export default Sitebar;

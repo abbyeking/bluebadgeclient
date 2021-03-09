@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-// import Favorites from '../Favorites'
-
 const StyledSideBar = styled.div`
     height: 100vh;
     min-width: 25vw;
@@ -14,9 +12,7 @@ const SideBar = ({setUserFilm}) => {
 
     return (
         <div>
-        {/* <StyledSideBar>
-            <Favorites setUserFilm={setUserFilm} />
-        </StyledSideBar> */}
+       
         </div>
     )
 

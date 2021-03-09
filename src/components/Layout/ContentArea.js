@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-// import DetailsView from '../DetailsView'
-// import SearchView from '../SearchView'
 
 const StyledContentArea = styled.div`
     height: 100vh;
@@ -10,15 +8,11 @@ const StyledContentArea = styled.div`
     display: flex;
 `;
 
-// const ContentArea = ({userFilm}) => {
 const ContentArea = () => {
 
     return (
         <StyledContentArea>
-            {/* {userFilm?
-                <DetailsView userFilm={userFilm}/>
-            :   <SearchView />
-            } */}
+     
 
         </StyledContentArea>
     )

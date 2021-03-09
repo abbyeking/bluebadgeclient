@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
-// import Navbar from '../components/Navbar';
 import './FavoritesView.css';
-// import styled from 'styled-components'
 import StyledButton from './Styles/Button'
 import StyledH1 from './Styles/StyledH1'
-import StyledOutterDiv from './Styles/StyledOutterDiv'
+import StyledOuterDiv from './Styles/StyledOuterDiv'
 import {
-    Card, CardImg, CardText, CardBody,
+    Card, CardImg, CardText, CardLink, CardBody,
     CardTitle, CardSubtitle, Button, Row, Col
 } from 'reactstrap'
 
@@ -25,7 +23,6 @@ const FavoritesView = (props, userRecipe) => {
         }).then((res) => res.json())
             .then((logData) => {
                 setFavorites(logData)
-                console.log(logData)
             })
     }
 
@@ -37,13 +34,11 @@ const FavoritesView = (props, userRecipe) => {
                 "Authorization": props.token
             },
         }).then(() => {
-            console.log("Deleted Successfully");
             handleSubmit();
         })
     }
 
     const updateRecipe = (id) => {
-        console.log(id)
         fetch(`http://localhost:3000/recipe/update/${id}`, {
             method: "PUT",
             headers: {
@@ -55,43 +50,56 @@ const FavoritesView = (props, userRecipe) => {
             })
         }).then(() => {
             handleSubmit();
-            console.log(title);
         })
     }
 
 
     return (
-        <StyledOutterDiv>
+
+        <StyledOuterDiv>
             <Row className="justify-content-md-center">
                 <Col xs={12} sm={4} md={4}>
-                    <StyledH1 className="favorites">Favorites</StyledH1>
+                    <StyledH1 id="Favorites" className="favorites">Favorites</StyledH1>
                     <StyledButton onClick={() => handleSubmit()}>View Favorites</StyledButton>
+                    <br></br>
+                    <br></br>
                     {favorites?.length > 0 ?
                         <>
                             {favorites.map(favorite => {
                                 return (
-                                    <Card>
-                                        <CardBody>
-                                            <div>
-                                                <CardTitle><h4 key={favorite.id}>{favorite.title}</h4></CardTitle>
-                                                <CardImg id="images" src={favorite.image} alt="Recipe Image" />
-                                                <br />
-                                                <br />
+                                    <div>
+                                        <br></br>
+                                        <br></br>
+                                        <Card>
+                                            <CardBody>
+                                                <div>
+                                                    <CardTitle><h4 key={favorite.id}>{favorite.title}</h4></CardTitle>
+                                                    <CardImg id="images" src={favorite.image} alt="Recipe Image" />
+                                                    <br />
+                                                    <br />
 
-                                                <CardSubtitle tag="h6" className="mb-2 text-muted">Servings: {favorite.servings}</CardSubtitle>
-                                                <CardSubtitle tag="h6" className="mb-2 text-muted">Ready in: {favorite.readyInMinutes}</CardSubtitle>
-                                                <CardText>{favorite.sourceUrl}</CardText>
-                                                <br />
 
-                                                <StyledButton onClick={() => { deleteRecipe(favorite.id) }}>Delete</StyledButton>
-                                                <input onChange={(e) => setTitle(e.target.value)}></input><StyledButton onClick={() => { updateRecipe(favorite.id) }}>Update Title</StyledButton>
+                                                    <CardSubtitle tag="h6" className="mb-2 text-muted">Servings: {favorite.servings}</CardSubtitle>
+                                                    <CardSubtitle tag="h6" className="mb-2 text-muted">Ready in: {favorite.readyInMinutes} mins.</CardSubtitle>
+                                                    {/* <CardText>{favorite.sourceUrl}</CardText> */}
+                                                    <CardLink id="red" href={favorite.sourceUrl} target="_blank" >Link to recipe</CardLink>
+                                                    <br />
+                                                    <br />
 
-                                                <br />
-                                                <br />
-                                                <br />
-                                            </div>
-                                        </CardBody>
-                                    </Card>
+
+                                                    <StyledButton onClick={() => { deleteRecipe(favorite.id) }}>Delete</StyledButton>
+                                                    <br></br>
+                                                    <br />
+                                                    <input style={{ margin: "0 0 .5rem" }} onChange={(e) => setTitle(e.target.value)}></input>
+                                                    <StyledButton onClick={() => { updateRecipe(favorite.id) }}>Update Title</StyledButton>
+
+                                                    <br />
+                                                    <br />
+
+                                                </div>
+                                            </CardBody>
+                                        </Card>
+                                    </div>
                                 )
                             })}
                         </>
@@ -99,7 +107,7 @@ const FavoritesView = (props, userRecipe) => {
                     }
                 </Col>
             </Row>
-        </StyledOutterDiv>
+        </StyledOuterDiv>
 
     )
 
