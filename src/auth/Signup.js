@@ -83,7 +83,8 @@ const Signup = (props) => {
   const [password, setPassword] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch(`${APIURL}/user/register`, {
+    
+    fetch(`${APIURL}/user/signup`, {
       method: "POST",
       body: JSON.stringify({ user: { email: email, password: password } }),
       headers: new Headers({
