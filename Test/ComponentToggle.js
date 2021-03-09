@@ -32,4 +32,4 @@ const App = () => {
 
 ReactDOM.render(<App/>, document.getElementById("root"));
 
-//From stack overflow trying to figure out the toggle.
+//From stack overflow trying to figure out the toggle.  Not needed.
