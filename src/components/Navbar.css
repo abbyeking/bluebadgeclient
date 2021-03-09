@@ -1,7 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
 #fullNav {
     height: 70px;
     width: 100%;
     background-color: #9CB7C6;
+}
+
+
+#images {
+    width: 100%;
+}
+
+#container {
+    display:flex;
+    flex-direction: row;
+}
+
+NavBar{
+    z-index: 100;
+}
+
+#foodbackground{
+    background-image: url('../assets/fruit-192753_1920.jpg');
+    width: 100vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#yum{
+    font-size: 1.8rem;
 }
 

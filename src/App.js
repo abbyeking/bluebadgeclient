@@ -4,6 +4,13 @@ import Sitebar from './components/Navbar';
 import './App.css';
 import SearchView from './components/SearchView';
 import FavoritesView from './components/FavoritesView';
+import {
+  BrowserRouter as Router,
+  Link,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 function App() {
 
@@ -27,28 +34,46 @@ function App() {
     setSessionToken('');
   }
 
-  const protectedViews = () => {
-    return(sessionToken === localStorage.getItem('token')  
-        ?(
-          <>
-          <br></br>
-            <SearchView token={sessionToken} />
-            <br></br>
-            <FavoritesView token={sessionToken} />
-          </>
-        )         
-        :<Auth updateToken={updateToken} />
-      )
-  }
+
+//   const protectedViews = () => {
+//     return(sessionToken === localStorage.getItem('token')  
+//         ?(
+//           <>
+//           <br></br>
+//             <SearchView token={sessionToken} />
+//             <br></br>
+//             <FavoritesView token={sessionToken} />
+//           </>
+//         )         
+//         :<Auth updateToken={updateToken} />
+//       )
+//   }
 
   return (
     <div className="App">
       <br></br>
-      <Sitebar clearToken={clearToken} />
-      {protectedViews()}
-
+      <Router>
+        <Sitebar clearToken={clearToken} token={sessionToken} />
+        <Switch>
+          <Route exact path="/">
+            {sessionToken === localStorage.getItem("token") ? (
+              <Redirect to="/search" />
+            ) : (
+              <Auth updateToken={updateToken} />
+            )}
+          </Route>
+          
+          <Route exact path="/favorites">
+            <FavoritesView token={sessionToken} />
+          </Route>
+          <Route exact path="/search">
+            <SearchView token={sessionToken} />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
+
 
 export default App;
