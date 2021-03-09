@@ -21,18 +21,7 @@ const Login = (props) => {
         }
       )
 
-        .then(
-          (response) => {
-            return response.json()
-          })
-        .then(
-          (data) => {
-            props.updateToken(data.sessionToken);
-          }
-        )
-        .catch((err) => console.log(err))
-    } else {
-
+        
       .then(
         (response) => {
           return response.json()
@@ -48,6 +37,7 @@ const Login = (props) => {
       setNoEmail(true);
     }
   }
+
 
   return (
     <div>
